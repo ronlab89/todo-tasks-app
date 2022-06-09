@@ -21,26 +21,25 @@
 
 .primary-button {
     width: 200px;
-    height: 30px;
-    padding: 1rem;
+    padding: 5px;
     border-radius: 0.25rem;
     border: 1px solid var(--orange);
     background-color: var(--orange);
     color: var(--marfil);
     font-family: var(--font-title);
     font-weight: 700;
-    font-size: 1.875rem;
+    font-size: 1.2rem;
     transition: all .3s ease;
 }
 
 .primary-button:hover {
     background-color: transparent;
     color: var(--orange);
+    border: 2px solid var(--orange);
 }
 
 .secondary-button {
     width: 200px;
-    height: 30px;
     padding: 1rem;
     border-radius: 0.25rem;
     border: 1px solid var(--aqua);
@@ -55,4 +54,5 @@
 .secondary-button:hover {
     background-color: transparent;
     color: var(--aqua);
+    border: 2px solid var(--aqua);
 }
