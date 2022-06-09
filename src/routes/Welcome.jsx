@@ -1,8 +1,9 @@
 import React from 'react'
+import NavbarWelcome from '../components/NavbarWelcome'
 
 const Welcome = () => {
   return (
-    <div>Welcome</div>
+    <NavbarWelcome />
   )
 }
 
