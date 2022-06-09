@@ -9,10 +9,10 @@ const Welcome = () => {
   return (
     <div className='page'>
         <NavbarWelcome />
-        <section className='container row'>
-            <article className="col-12">
+        <section className='container row m-0 p-5'>
+            <article className="col-12 mb-5">
                 <p className='text-welcome'>Es momento de organizar tu día a día, se más productivo, agil y eficaz.</p>
-                <p className='text-welcome'>¿Estas list@ para comenzar una revolución en tu forma de gestionar proyectos y tareas?</p>
+                <p className='text-welcome mb-5'>¿Estas list@ para comenzar una revolución en tu forma de gestionar proyectos y tareas?</p>
                 <Link to={'/login'}>
                     <Button type='button' text='Empezar' className='primary-button' />
                 </Link>

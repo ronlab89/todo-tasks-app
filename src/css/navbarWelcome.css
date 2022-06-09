@@ -21,7 +21,7 @@
 
 .navWelcome {
     width: 100%;
-    height: 138px;
+    height: 130px;
     padding: 1rem 1.5rem;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .text-welcome {
-    font-family: var(--font-text-primary);
+    font-family: var(--font-text-secondary);
     font-weight: 400;
     font-size: 20px;
     color: var(--dark);
