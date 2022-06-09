@@ -45,3 +45,30 @@
     font-size: 20px;
     color: var(--dark);
 }
+
+.img-list-todo {
+    width: 360px;
+    height: 300px;
+}
+
+/* Responsive design */
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .text-welcome {
+        font-size: 30px;
+    }
+    .img-list-todo {
+        width: 600px;
+        height: 500px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .text-welcome {
+        font-size: 30px;
+    }
+    .img-list-todo {
+        width: 600px;
+        height: 500px;
+    }
+}

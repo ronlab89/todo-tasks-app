@@ -9,16 +9,20 @@ const Welcome = () => {
   return (
     <div className='page'>
         <NavbarWelcome />
-        <section className='container row m-0 p-5'>
-            <article className="col-12 mb-5">
-                <p className='text-welcome'>Es momento de organizar tu día a día, se más productivo, agil y eficaz.</p>
-                <p className='text-welcome mb-5'>¿Estas list@ para comenzar una revolución en tu forma de gestionar proyectos y tareas?</p>
-                <Link to={'/login'}>
-                    <Button type='button' text='Empezar' className='primary-button' />
-                </Link>
+        <section className='row m-0 p-5'>
+            <article className="col-12 col-lg-6 mb-5 mb-md-0 px-md-5 order-lg-2">
+                <div>
+                    <p className='text-welcome'>Es momento de organizar tu día a día, se más productivo, agil y eficaz.</p>
+                    <p className='text-welcome mb-5 mb-md-4'>¿Estas list@ para comenzar una revolución en tu forma de gestionar proyectos y tareas?</p>
+                </div>
+                <div className='text-center text-md-end text-xl-start'>
+                    <Link to={'/login'} className="">
+                        <Button type='button' text='Empezar' className='primary-button' />
+                    </Link>
+                </div>
             </article>
-            <article className="col-12">
-                <img src={listTodo} alt="Ilustracion de lista de tareas pendientes" className='img-fluid' width='360'/>
+            <article className="col-12 col-lg-6 order-lg-1">
+                <img src={listTodo} alt="Ilustracion de lista de tareas pendientes" className='img-list-todo'/>
             </article>
         </section>
     </div>
