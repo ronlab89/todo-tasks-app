@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
 import { FcGoogle } from 'react-icons/fc'
 import listCalendar from '/assets/images/listCalendar.jpg'
@@ -11,6 +12,13 @@ import NavbarWelcome from '../components/NavbarWelcome'
 import Button from '../components/Button'
 
 const Register = () => {
+
+    const {register, handleSubmit, formState: {error}, setError} = useForm();
+
+    const onSubmit = ({data}) => {
+        console.log(data);
+    } 
+
   return (
     <div className='page'>
         <NavbarWelcome />
@@ -19,10 +27,10 @@ const Register = () => {
           <div className="card-form-register">
             <Title text='Crear Cuenta' className='register mb-3' />
             <span className='link'>¿Ya estas registrado? </span><Link to='/login'><span className='link redirect'>Inicia sesión</span></Link>
-            <form className='form my-3'>
+            <form className='form my-3' onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                     <div className="col-lg-4">
-                    <Input label='Nombre' type='text' placeholder='Ingrese su nombre' id='name-register' />
+                    <Input label='Nombre' type='text' placeholder='Ingrese su nombre' id='name-register'/>
                     </div>
                     <div className="col-lg-4">
                     <Input label='Apellido' type='text' placeholder='Ingrese su apellido' id='lastName-register' />
