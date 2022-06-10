@@ -9,7 +9,7 @@ const Input = ({label, type, placeholder}) => {
           id="floatingInput"
           placeholder={placeholder} 
         />
-        <label for="floatingInput">{label}</label>
+        <label htmlFor="floatingInput">{label}</label>
     </div>
   )
 }
