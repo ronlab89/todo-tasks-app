@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Welcome from './routes/Welcome'
 import Login from './routes/Login'
+import Register from './routes/Register'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/' element={<App />}>
           <Route index element={<Welcome />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
         </Route>
       </Routes>
     </BrowserRouter>
