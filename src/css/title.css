@@ -19,7 +19,7 @@
   --font-text-secondary: 'Poppins', sans-serif;
 }
 
-.login {
+.login, .register {
     font-family: var(--font-title);
     font-weight: 600;
     font-size: 1.625rem;
@@ -30,7 +30,7 @@
 /* Responsive Design */
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .login {
+  .login, .register {
     font-size: 2.5rem;
   }
 }

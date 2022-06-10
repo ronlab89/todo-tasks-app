@@ -33,7 +33,7 @@ body {
   max-height: 100vh;
 }
 
-.card-form {
+.card-form, .card-form-register {
   width: 80%;
   min-height: 500px;
   margin: 0px auto;
@@ -87,6 +87,10 @@ a {
 @media (min-width: 992px) {
   .card-form {
     width: 40%;
+    background-color: rgba(255,255,255,0.8);
+  }
+  .card-form-register {
+    width: 80%;
     background-color: rgba(255,255,255,0.8);
   }
   .list-calendar, .list-travel {

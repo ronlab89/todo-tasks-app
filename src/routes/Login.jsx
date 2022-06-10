@@ -22,8 +22,8 @@ const Login = () => {
             <Title text='Iniciar sesión' className='login mb-3' />
             <span className='link'>¿No estas registrado? </span><Link to='/register'><span className='link redirect'>Crea una cuenta</span></Link>
             <form className='form my-3'>
-              <Input label='Correo electronico' type='email' placeholder='Ingrese su correo electronico' />
-              <Input label='Contraseña' type='password' placeholder='Ingrese su contraseña' />
+              <Input label='Correo electronico' type='email' placeholder='Ingrese su correo electronico' id='email-login' />
+              <Input label='Contraseña' type='password' placeholder='Ingrese su contraseña' id='password-login' />
               <Button type='submit' text='Continuar' className='primary-button' />
             </form>
             <Link to='/'><span className='link redirect'>¿Olvidaste tu contraseña?</span></Link>

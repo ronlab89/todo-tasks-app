@@ -1,15 +1,15 @@
 import React from 'react'
 
-const Input = ({label, type, placeholder}) => {
+const Input = ({label, type, placeholder, id}) => {
   return (
     <div className="form-floating mb-3">
         <input
           type={type}
           className="form-control"
-          id="floatingInput"
+          id={id}
           placeholder={placeholder} 
         />
-        <label htmlFor="floatingInput" className='label'>{label}</label>
+        <label htmlFor={id} className='label'>{label}</label>
     </div>
   )
 }
