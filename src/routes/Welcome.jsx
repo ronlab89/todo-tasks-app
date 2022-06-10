@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import NavbarWelcome from '../components/NavbarWelcome'
-import listTodo from '../../public/assets/images/listTodo.jpg'
+import listTodo from '/assets/images/listTodo.jpg'
 
 const Welcome = () => {
 

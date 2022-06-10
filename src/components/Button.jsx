@@ -6,7 +6,7 @@ const Button = ({type, text, onclick, className}) => {
     <button
       type={type}
       className={className}
-      onclick={onclick}  
+      onClick={onclick}  
     >
         {text}
     </button>
