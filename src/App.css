@@ -74,12 +74,35 @@ a {
 
 /* Responsive Design */
 
-@media (min-width: 768px) and (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .list-calendar, .list-travel {
     width: 350px;
     height: 230px;
   }
   .link {
     font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .card-form {
+    width: 40%;
+    background-color: rgba(255,255,255,0.8);
+  }
+  .list-calendar, .list-travel {
+    width: 500px;
+    height: 350px;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+  }
+  .link {
+    font-size: 1.5rem;
+  }
+  .list-calendar {
+    left: 0;
+  }
+  .list-travel {
+    right: 0;
   }
 }
