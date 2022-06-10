@@ -33,8 +33,8 @@ const Login = () => {
           </div>
         </article>
         <article className="col-12">
-          <div className="d-flex justify-content-center align-items-center mt-5">
-            <img src={listCalendar} alt="Calendario lista de tareas" className='list-calendar d-none'/>
+          <div className="d-flex justify-content-center justify-content-md-between align-items-center mt-5 px-md-4">
+            <img src={listCalendar} alt="Calendario lista de tareas" className='list-calendar d-none d-md-block'/>
             <img src={listTravel} alt="Viajes en lista de tareas" className='list-travel'/>
           </div>
         </article>
