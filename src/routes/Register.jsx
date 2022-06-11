@@ -10,12 +10,14 @@ import Title from '../components/Title'
 import Input from '../components/Input'
 import NavbarWelcome from '../components/NavbarWelcome'
 import Button from '../components/Button'
+import { formValidate } from '../utils/formValidate'
 
 const Register = () => {
 
-    const {register, handleSubmit, formState: {error}, setError} = useForm();
+    const {register, handleSubmit, formState: {error}, getValues, setError} = useForm();
+    const {required, patternEmail, minLength, validateTrim, validateEquals} = formValidate();
 
-    const onSubmit = ({data}) => {
+    const onSubmit = (data) => {
         console.log(data);
     } 
 
@@ -30,16 +32,43 @@ const Register = () => {
             <form className='form my-3' onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                     <div className="col-lg-4">
-                    <Input label='Nombre' type='text' placeholder='Ingrese su nombre' id='name-register'/>
+                    <Input label='Nombre' type='text' placeholder='Ingrese su nombre' id='name-register'
+                    {...register('name', {
+                      required,
+                      validate: validateTrim
+                    })}
+                    />
                     </div>
                     <div className="col-lg-4">
-                    <Input label='Apellido' type='text' placeholder='Ingrese su apellido' id='lastName-register' />
+                    <Input label='Apellido' type='text' placeholder='Ingrese su apellido' id='lastName-register' 
+                    {...register('surname', {
+                      required,
+                      validate: validateTrim
+                    })}
+                    />
                     </div>
                     <div className="col-lg-4">
-                    <Input label='Correo electronico' type='email' placeholder='Ingrese su correo electronico' id='email-register' />
+                    <Input label='Correo electronico' type='email' placeholder='Ingrese su correo electronico' id='email-register' 
+                    {...register('email', {
+                      required,
+                      pattern: patternEmail
+                    })}
+                    />
                     </div>
-                    <Input label='Contraseña' type='password' placeholder='Ingrese su contraseña' id='password-register' />
-                    <Input label='Repita Contraseña' type='password' placeholder='Repita su contraseña' id='repassword-register' />
+                    <Input label='Contraseña' type='password' placeholder='Ingrese su contraseña' id='password-register' 
+                    {...register('password', {
+                      required,
+                      minLength,
+                      validate: validateTrim
+                    })}
+                    />
+                    <Input label='Repita Contraseña' type='password' placeholder='Repita su contraseña' id='repassword-register' 
+                    {...register('repassword', {
+                      required,
+                      minLength,
+                      validate: validateTrim, validateEquals
+                    })}
+                    />
                 </div>
                     <Button type='submit' text='Continuar' className='primary-button' />
             </form>
