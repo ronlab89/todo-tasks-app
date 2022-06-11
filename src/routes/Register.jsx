@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { formValidate } from '../utils/formValidate'
 
 import { FcGoogle } from 'react-icons/fc'
 import listCalendar from '/assets/images/listCalendar.jpg'
@@ -10,11 +11,11 @@ import Title from '../components/Title'
 import Input from '../components/Input'
 import NavbarWelcome from '../components/NavbarWelcome'
 import Button from '../components/Button'
-import { formValidate } from '../utils/formValidate'
+import FormErrors from '../components/FormErrors'
 
 const Register = () => {
 
-    const {register, handleSubmit, formState: {error}, getValues, setError} = useForm();
+    const {register, handleSubmit, formState: {errors}, getValues, setError} = useForm();
     const {required, patternEmail, minLength, validateTrim, validateEquals} = formValidate();
 
     const onSubmit = (data) => {
@@ -38,6 +39,7 @@ const Register = () => {
                       validate: validateTrim
                     })}
                     />
+                    <FormErrors error={errors.name} />
                     </div>
                     <div className="col-lg-4">
                     <Input label='Apellido' type='text' placeholder='Ingrese su apellido' id='lastName-register' 
@@ -46,14 +48,17 @@ const Register = () => {
                       validate: validateTrim
                     })}
                     />
+                    <FormErrors error={errors.surname} />
                     </div>
                     <div className="col-lg-4">
                     <Input label='Correo electronico' type='email' placeholder='Ingrese su correo electronico' id='email-register' 
                     {...register('email', {
                       required,
-                      pattern: patternEmail
+                      pattern: patternEmail,
+                      validate: validateTrim
                     })}
                     />
+                    <FormErrors error={errors.email} />
                     </div>
                     <Input label='Contraseña' type='password' placeholder='Ingrese su contraseña' id='password-register' 
                     {...register('password', {
@@ -62,13 +67,15 @@ const Register = () => {
                       validate: validateTrim
                     })}
                     />
+                    <FormErrors error={errors.password} />
                     <Input label='Repita Contraseña' type='password' placeholder='Repita su contraseña' id='repassword-register' 
                     {...register('repassword', {
                       required,
                       minLength,
-                      validate: validateTrim, validateEquals
+                      validate: validateEquals(getValues('password'))
                     })}
                     />
+                    <FormErrors error={errors.repassword} />
                 </div>
                     <Button type='submit' text='Continuar' className='primary-button' />
             </form>
