@@ -1,4 +1,6 @@
 import { createContext, useState } from "react"
+import { auth } from '../firebaseConfig'
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const userContext = createContext();
 
@@ -6,8 +8,9 @@ const UserProvider = ({children}) => {
   
     const [user, setUser] = useState(false);
 
-    const signIn = () => {
+    const signIn = (email, password) => {
         setUser(true);
+        signInWithEmailAndPassword(auth, email, password);
     }
 
     const signOut = () => {
