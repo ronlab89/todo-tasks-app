@@ -50,7 +50,7 @@ const Login = () => {
             <Title text='Iniciar sesión' className='login mb-3' />
             <span className='link'>¿No estas registrado? </span><Link to='/register'><span className='link redirect'>Crea una cuenta</span></Link>
             <form className='form my-3' onSubmit={handleSubmit(onSubmit)}>
-              <Input label='Correo electronico' type='email' placeholder='Ingrese su correo electronico' id='email-login' 
+              <Input label='Correo electronico' type='email' placeholder='Ingrese su correo electronico' id='email-login' error={errors.email && 'error-input'} 
               {...register('email', {
                 required,
                 pattern: patternEmail,
@@ -58,7 +58,7 @@ const Login = () => {
               })}
               />
               <FormErrors error={errors.email} />
-              <Input label='Contraseña' type='password' placeholder='Ingrese su contraseña' id='password-login' 
+              <Input label='Contraseña' type='password' placeholder='Ingrese su contraseña' id='password-login' error={errors.password && 'error-input'}
               {...register('password', {
                 required,
                 minLength,
@@ -68,7 +68,7 @@ const Login = () => {
               <FormErrors error={errors.password} />
               {
                 loading ? 
-                <LoadingButton text='Iniciando sesion' color='primary-button' /> 
+                <LoadingButton text='Iniciando sesion' color='loading-button' /> 
                 :
                 <Button type='submit' text='Continuar' className='primary-button' />
               }

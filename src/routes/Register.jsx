@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { formValidate } from '../utils/formValidate'
 
@@ -12,14 +12,31 @@ import Input from '../components/Input'
 import NavbarWelcome from '../components/NavbarWelcome'
 import Button from '../components/Button'
 import FormErrors from '../components/FormErrors'
+import { erroresFirebase } from '../utils/erroresFirebase'
+import { userContext } from '../context/UserProvider'
+import LoadingButton from '../components/LoadingButton'
 
 const Register = () => {
 
     const {register, handleSubmit, formState: {errors}, getValues, setError} = useForm();
     const {required, patternEmail, minLength, validateTrim, validateEquals} = formValidate();
+    const {userCreate} = useContext(userContext);
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
+
+    const onSubmit = async({email, password}) => {
+        try {
+          setLoading(true);
+          await userCreate(email, password);
+          navigate('/');
+        } catch (error) {
+          console.log(error.code)
+          const {code, message} = erroresFirebase(error.code)
+          setError(code, {message})
+        } finally {
+          setLoading(false);
+        }
     } 
 
   return (
@@ -33,7 +50,7 @@ const Register = () => {
             <form className='form my-3' onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                     <div className="col-lg-4">
-                    <Input label='Nombre' type='text' placeholder='Ingrese su nombre' id='name-register'
+                    <Input label='Nombre' type='text' placeholder='Ingrese su nombre' id='name-register' error={errors.name && 'error-input'}
                     {...register('name', {
                       required,
                       validate: validateTrim
@@ -42,7 +59,7 @@ const Register = () => {
                     <FormErrors error={errors.name} />
                     </div>
                     <div className="col-lg-4">
-                    <Input label='Apellido' type='text' placeholder='Ingrese su apellido' id='lastName-register' 
+                    <Input label='Apellido' type='text' placeholder='Ingrese su apellido' id='lastName-register' error={errors.surname && 'error-input'} 
                     {...register('surname', {
                       required,
                       validate: validateTrim
@@ -51,7 +68,7 @@ const Register = () => {
                     <FormErrors error={errors.surname} />
                     </div>
                     <div className="col-lg-4">
-                    <Input label='Correo electronico' type='email' placeholder='Ingrese su correo electronico' id='email-register' 
+                    <Input label='Correo electronico' type='email' placeholder='Ingrese su correo electronico' id='email-register' error={errors.email && 'error-input'}
                     {...register('email', {
                       required,
                       pattern: patternEmail,
@@ -60,7 +77,7 @@ const Register = () => {
                     />
                     <FormErrors error={errors.email} />
                     </div>
-                    <Input label='Contraseña' type='password' placeholder='Ingrese su contraseña' id='password-register' 
+                    <Input label='Contraseña' type='password' placeholder='Ingrese su contraseña' id='password-register' error={errors.password && 'error-input'}
                     {...register('password', {
                       required,
                       minLength,
@@ -68,7 +85,7 @@ const Register = () => {
                     })}
                     />
                     <FormErrors error={errors.password} />
-                    <Input label='Repita Contraseña' type='password' placeholder='Repita su contraseña' id='repassword-register' 
+                    <Input label='Repita Contraseña' type='password' placeholder='Repita su contraseña' id='repassword-register' error={errors.repassword && 'error-input'} 
                     {...register('repassword', {
                       required,
                       minLength,
@@ -77,7 +94,12 @@ const Register = () => {
                     />
                     <FormErrors error={errors.repassword} />
                 </div>
-                    <Button type='submit' text='Continuar' className='primary-button' />
+                    {
+                      loading ?
+                      <LoadingButton text='Creando usuario' color='loading-button' />
+                      :
+                      <Button type='submit' text='Continuar' className='primary-button' />
+                    }
             </form>
             <hr />
             <p className='lead'>O</p>

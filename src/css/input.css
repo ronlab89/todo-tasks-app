@@ -23,5 +23,11 @@
   font-family: var(--font-text-secondary);
   font-weight: 400;
   font-size: 1rem;
-  color: var(--aqua);
+  color: var(--black);
+}
+
+.error-input {
+  border-color: var(--red) !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.918) !important;
+  color: var(--black) !important;
 }
