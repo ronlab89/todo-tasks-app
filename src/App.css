@@ -72,6 +72,24 @@ a {
   height: 200px;
 }
 
+.link-not-found {
+  text-align: end;
+  margin-right: 1rem;
+  font-family: var(--font-text-primary);
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.not-found {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--marfil);
+  background-image: url('../assets/images/404.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /* Responsive Design */
 
 @media (min-width: 768px) and (max-width: 991px) {
