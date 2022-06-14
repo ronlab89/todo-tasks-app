@@ -18,7 +18,7 @@ import LoadingButton from '../components/LoadingButton'
 
 const Login = () => {
 
-  const {logIn} = useContext(userContext);
+  const {logIn, loginGoogle} = useContext(userContext);
 
   const {register, handleSubmit, formState: {errors}, setError, getValues} = useForm();
   const {required, validateTrim, minLength, patternEmail} = formValidate();
@@ -37,6 +37,20 @@ const Login = () => {
       const {code, message} = erroresFirebase(error.code);
       setError(code, {message})
     }finally {
+      setLoading(false);
+    }
+  }
+
+  const handleGoogleLogin = async(e) => {
+    e.preventDefault();
+    console.log('Login with Google working')
+    try {
+      setLoading(true);
+      await loginGoogle();
+      navigate('/');
+    } catch (error) {
+      console.log(error.code);
+    } finally {
       setLoading(false);
     }
   }
@@ -76,7 +90,12 @@ const Login = () => {
             <Link to='/'><span className='link redirect'>¿Olvidaste tu contraseña?</span></Link>
             <hr />
             <p className='lead'>O</p>
-            <Button type='button' text='Continuar con Google' className='google-button' icon={<FcGoogle />} />
+            {
+            loading ? 
+              <LoadingButton text='Accediendo con Google' color='loading-button' /> 
+              :
+              <Button type='button' text='Continuar con Google' className='google-button' onclick={handleGoogleLogin} icon={<FcGoogle />} />
+            }
           </div>
         </article>
         <article className="col-12">

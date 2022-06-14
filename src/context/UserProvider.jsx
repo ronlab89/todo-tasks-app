@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react"
-import { auth } from '../firebaseConfig'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { auth, provider } from '../firebaseConfig'
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 
 const userContext = createContext();
 
@@ -10,7 +10,7 @@ const UserProvider = ({children}) => {
 
     useEffect(() => {
         const unsuscribe = onAuthStateChanged(auth, user => {
-            // console.log(user);
+            console.log(user);
             if(user){
                 const {email, photoURL, displayName, uid} = user;
                 setUser({email, photoURL, displayName, uid})
@@ -24,9 +24,12 @@ const UserProvider = ({children}) => {
     const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password);
     const logOut = () => signOut(auth);
     const userCreate = (email, password) => createUserWithEmailAndPassword(auth, email, password); 
+
+    //Auth with Google Count
+    const loginGoogle = () => signInWithPopup(auth, provider);
   
     return (
-    <userContext.Provider value={{user, logIn, logOut, userCreate}}>
+    <userContext.Provider value={{user, logIn, logOut, userCreate, loginGoogle}}>
         {children}
     </userContext.Provider>
   )
