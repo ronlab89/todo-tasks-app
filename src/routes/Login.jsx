@@ -1,7 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { formValidate } from '../utils/formValidate'
+import { erroresFirebase } from '../utils/erroresFirebase'
+import { userContext } from '../context/UserProvider'
 
 import { FcGoogle } from 'react-icons/fc'
 import listCalendar from '/assets/images/listCalendar.jpg'
@@ -12,16 +14,31 @@ import Input from '../components/Input'
 import NavbarWelcome from '../components/NavbarWelcome'
 import Title from '../components/Title'
 import FormErrors from '../components/FormErrors'
-
-
+import LoadingButton from '../components/LoadingButton'
 
 const Login = () => {
 
+  const {logIn} = useContext(userContext);
+
   const {register, handleSubmit, formState: {errors}, setError, getValues} = useForm();
   const {required, validateTrim, minLength, patternEmail} = formValidate();
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const navigate = useNavigate();
+
+  const onSubmit = async({email, password}) => {
+    console.log(email, password);
+    try {
+      setLoading(true);
+      await logIn(email, password)
+      navigate('/');
+    } catch (error) {
+      console.log(error.code);
+      const {code, message} = erroresFirebase(error.code);
+      setError(code, {message})
+    }finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -49,7 +66,12 @@ const Login = () => {
               })}
               />
               <FormErrors error={errors.password} />
-              <Button type='submit' text='Continuar' className='primary-button' />
+              {
+                loading ? 
+                <LoadingButton text='Iniciando sesion' color='primary-button' /> 
+                :
+                <Button type='submit' text='Continuar' className='primary-button' />
+              }
             </form>
             <Link to='/'><span className='link redirect'>¿Olvidaste tu contraseña?</span></Link>
             <hr />
