@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form'
 import { formValidate } from '../utils/formValidate'
 import { erroresFirebase } from '../utils/erroresFirebase'
 import { userContext } from '../context/UserProvider'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 import { FcGoogle } from 'react-icons/fc'
 import listCalendar from '/assets/images/listCalendar.jpg'
@@ -15,7 +17,7 @@ import NavbarWelcome from '../components/NavbarWelcome'
 import Title from '../components/Title'
 import FormErrors from '../components/FormErrors'
 import LoadingButton from '../components/LoadingButton'
-import Modal from '../components/Modal'
+import ModalPassword from '../components/ModalPassword'
 
 const Login = () => {
 
@@ -24,6 +26,7 @@ const Login = () => {
   const {register, handleSubmit, formState: {errors}, setError, getValues} = useForm();
   const {required, validateTrim, minLength, patternEmail} = formValidate();
   const [loading, setLoading] = useState({});
+  const [emailPasswordReset, setEmailPasswordReset] = useState();
 
   const navigate = useNavigate();
 
@@ -56,16 +59,26 @@ const Login = () => {
     }
   }
 
-  const handlePasswordReset = async(e) => {
-    e.preventDefault();
+  const handlePasswordReset = async() => {
     console.log('Working Reset');
     try {
       setLoading(prev => ({...prev, reset: true}));
-      await passwordReset(email);
+      await passwordReset(emailPasswordReset);
     } catch (error) {
       console.log(error);
+      const {code, message} = erroresFirebase(error.code);
+      setError(code, {message})
     } finally {
       setLoading(prev => ({...prev, reset: false}));
+      toast.success('🦄 Email de recuperacion enviado!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
 
@@ -101,8 +114,8 @@ const Login = () => {
                 <Button type='submit' text='Continuar' className='primary-button' />
               }
             </form>
-            <Link to='/'><span className='link redirect' onClick={handlePasswordReset}>¿Olvidaste tu contraseña?</span></Link>
-            <Modal />
+            
+            <ModalPassword setEmailPasswordReset={setEmailPasswordReset} handlePasswordReset={handlePasswordReset} loading={loading} />
             <hr />
             <p className='lead'>O</p>
             {

@@ -90,7 +90,19 @@ a {
   background-size: cover;
 }
 
+.formReset {
+  width: 40%;
+  margin: 0px auto;
+  padding: 8rem 0rem 0rem 0rem;
+}
+
 /* Responsive Design */
+
+@media (max-width: 768px) {
+  .formReset {
+    width: 90%;
+  }
+}
 
 @media (min-width: 768px) and (max-width: 991px) {
   .list-calendar, .list-travel {
@@ -99,6 +111,9 @@ a {
   }
   .link {
     font-size: 1.5rem;
+  }
+  .formReset {
+    width: 70%;
   }
 }
 
