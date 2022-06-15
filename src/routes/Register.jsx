@@ -102,8 +102,8 @@ const Register = () => {
                     }
             </form>
             <hr />
-            <p className='lead'>O</p>
-            <Button type='button' text='Continuar con Google' className='google-button' icon={<FcGoogle />} />
+            {/* <p className='lead'>O</p>
+            <Button type='button' text='Continuar con Google' className='google-button' icon={<FcGoogle />} /> */}
           </div>
         </article>
         <article className="col-12">

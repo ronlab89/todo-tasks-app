@@ -15,10 +15,11 @@ import NavbarWelcome from '../components/NavbarWelcome'
 import Title from '../components/Title'
 import FormErrors from '../components/FormErrors'
 import LoadingButton from '../components/LoadingButton'
+import Modal from '../components/Modal'
 
 const Login = () => {
 
-  const {logIn, loginGoogle} = useContext(userContext);
+  const {logIn, loginGoogle, passwordReset} = useContext(userContext);
 
   const {register, handleSubmit, formState: {errors}, setError, getValues} = useForm();
   const {required, validateTrim, minLength, patternEmail} = formValidate();
@@ -55,6 +56,19 @@ const Login = () => {
     }
   }
 
+  const handlePasswordReset = async(e) => {
+    e.preventDefault();
+    console.log('Working Reset');
+    try {
+      setLoading(prev => ({...prev, reset: true}));
+      await passwordReset(email);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(prev => ({...prev, reset: false}));
+    }
+  }
+
   return (
     <div className="page">
       <NavbarWelcome />
@@ -87,7 +101,8 @@ const Login = () => {
                 <Button type='submit' text='Continuar' className='primary-button' />
               }
             </form>
-            <Link to='/'><span className='link redirect'>¿Olvidaste tu contraseña?</span></Link>
+            <Link to='/'><span className='link redirect' onClick={handlePasswordReset}>¿Olvidaste tu contraseña?</span></Link>
+            <Modal />
             <hr />
             <p className='lead'>O</p>
             {
