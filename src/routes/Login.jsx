@@ -22,14 +22,14 @@ const Login = () => {
 
   const {register, handleSubmit, formState: {errors}, setError, getValues} = useForm();
   const {required, validateTrim, minLength, patternEmail} = formValidate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState({});
 
   const navigate = useNavigate();
 
   const onSubmit = async({email, password}) => {
     console.log(email, password);
     try {
-      setLoading(true);
+      setLoading(prev => ({...prev, loginEmail: true}));
       await logIn(email, password)
       navigate('/');
     } catch (error) {
@@ -37,7 +37,7 @@ const Login = () => {
       const {code, message} = erroresFirebase(error.code);
       setError(code, {message})
     }finally {
-      setLoading(false);
+      setLoading(prev => ({...prev, loginEmail: false}));
     }
   }
 
@@ -45,13 +45,13 @@ const Login = () => {
     e.preventDefault();
     console.log('Login with Google working')
     try {
-      setLoading(true);
+      setLoading(prev => ({...prev, loginApiGoogle: true}));
       await loginGoogle();
       navigate('/');
     } catch (error) {
       console.log(error.code);
     } finally {
-      setLoading(false);
+      setLoading(prev => ({...prev, loginApiGoogle: false}));
     }
   }
 
@@ -81,7 +81,7 @@ const Login = () => {
               />
               <FormErrors error={errors.password} />
               {
-                loading ? 
+                loading.loginEmail ? 
                 <LoadingButton text='Iniciando sesion' color='loading-button' /> 
                 :
                 <Button type='submit' text='Continuar' className='primary-button' />
@@ -91,7 +91,7 @@ const Login = () => {
             <hr />
             <p className='lead'>O</p>
             {
-            loading ? 
+            loading.loginApiGoogle ? 
               <LoadingButton text='Accediendo con Google' color='loading-button' /> 
               :
               <Button type='button' text='Continuar con Google' className='google-button' onclick={handleGoogleLogin} icon={<FcGoogle />} />
