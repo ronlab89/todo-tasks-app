@@ -18,6 +18,7 @@ import Title from '../components/Title'
 import FormErrors from '../components/FormErrors'
 import LoadingButton from '../components/LoadingButton'
 import ModalPassword from '../components/ModalPassword'
+import NavbarHome from '../components/NavbarHome'
 
 const Login = () => {
 
@@ -54,6 +55,8 @@ const Login = () => {
       navigate('/');
     } catch (error) {
       console.log(error.code);
+      const {code, message} = erroresFirebase(error.code);
+      setError(code, {message})
     } finally {
       setLoading(prev => ({...prev, loginApiGoogle: false}));
     }
@@ -65,24 +68,28 @@ const Login = () => {
       setLoading(prev => ({...prev, reset: true}));
       await passwordReset(emailPasswordReset);
     } catch (error) {
-      console.log(error);
+      console.log(error.code);
       const {code, message} = erroresFirebase(error.code);
       setError(code, {message})
     } finally {
       setLoading(prev => ({...prev, reset: false}));
-      toast.success('🦄 Email de recuperacion enviado!', {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      if(!errors) {
+        toast.success('🦄 Email de recuperacion enviado!', {
+          position: "top-center",
+          autoClosed: 5000,
+          hideProgrssBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
   }
 
   return (
+    <>
+    <NavbarHome />
     <div className="page">
       <NavbarWelcome />
       <section className='row'>
@@ -119,7 +126,7 @@ const Login = () => {
             <hr />
             <p className='lead'>O</p>
             {
-            loading.loginApiGoogle ? 
+              loading.loginApiGoogle ? 
               <LoadingButton text='Accediendo con Google' color='loading-button' /> 
               :
               <Button type='button' text='Continuar con Google' className='google-button' onclick={handleGoogleLogin} icon={<FcGoogle />} />
@@ -134,6 +141,7 @@ const Login = () => {
         </article>
       </section>
     </div>
+  </>
   )
 }
 

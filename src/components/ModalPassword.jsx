@@ -30,21 +30,7 @@ const ModalPassword = ({setEmailPasswordReset, handlePasswordReset, loading}) =>
   return (
     <>
       <div>
-      <Link to={'#'} onClick={toggle}><span className='link redirect'>¿Olvidaste tu contraseña?</span></Link>
-        
-        <Modal
-          backdrop={false}
-          centered
-          fullscreen
-          size="sm"
-          isOpen={modalOpen}
-          toggle={toggle}
-        >
-          <ModalHeader toggle={toggle}>
-            Recupera tu contraseña
-          </ModalHeader>
-          <ModalBody>
-          <ToastContainer
+      <ToastContainer
             position="top-center"
             autoClose={5000}
             hideProgressBar={false}
@@ -55,19 +41,28 @@ const ModalPassword = ({setEmailPasswordReset, handlePasswordReset, loading}) =>
             draggable
             pauseOnHover
           />
+      <Link to={'#'} onClick={toggle}><span className='link redirect'>¿Olvidaste tu contraseña?</span></Link>
+        
+        <Modal
+          centered
+          fullscreen
+          isOpen={modalOpen}
+          toggle={toggle}
+        >
+          <ModalHeader toggle={toggle}>
+            Recupera tu contraseña
+          </ModalHeader>
+          <ModalBody>
             Ingresa el correo electronico con el que creaste tu cuenta de usuario, si se encuentra en nuestra base de datos te enviaremos un email con el link para que recuperes tu contraseña y puedas acceder nuevamente a la aplicacion.
             <form className='formReset' onSubmit={handleSubmit(onSubmit)}>
               <Input
                 label='Correo
                 electronico'
                 type='email'
-                placeholder='Ingresa
-                tu
-                correo
-                electronico'
+                placeholder='Ingresa tu correo electronico'
                 id='password-reset'
-                error={errors.emailReset}
-                name='emailReset' 
+                error={errors.emailReset && 'error-input'}
+                name='emailReset'
                 {...register('emailReset', {
                   required,
                   pattern: patternEmail,

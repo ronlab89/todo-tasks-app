@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Joan&family=Poppins:wght@100;200;300;400;500;700;900&family=Rubik:wght@400;500;600;700;900&display=swap');
+
+:root {
+  /* Colors */
+  --white: #fff;
+  --black: #000;
+  --orange: #ff6b6b;
+  --marfil: #f7fff7;
+  --dark: #292f36;
+  --aqua: #4ecdc4;
+  --lightYellow: #ffe66d;
+  --lightGray: #f5f5f5;
+  --red: #ff0000;
+  --purple: #9747ff;
+
+  /* Fonts */
+  --font-title: 'Rubik', sans-serif;;
+  --font-text-primary: 'Joan', serif;
+  --font-text-secondary: 'Poppins', sans-serif;
+}
+
+.nav-home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    min-height: 100vh;
+    background-color: var(--dark);
+    color: var(--marfil);
+}
+
+.logo-dark {
+    width: 40px;
+}
+
+.icon-menu {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    color: var(--orange);
+}
