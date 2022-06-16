@@ -1,11 +1,15 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button'
+import NavbarHome from '../components/NavbarHome';
+import NavIcon from '../components/NavIcon';
+import { navIconContext } from '../context/NavIconProvider';
 import { userContext } from '../context/UserProvider'
 
 const Home = () => {
 
   const {logOut} = useContext(userContext);
+  const {toggleMenu} = useContext(navIconContext);
   const navigate = useNavigate();
 
   const handleLogOut = async(e) => {
@@ -15,10 +19,12 @@ const Home = () => {
   }
 
   return (
-    <div>
-      Home
-    <Button type='button' text='Log Out' onclick={handleLogOut} className='primary-button' />
-    </div>
+    <>
+      <NavbarHome handleLogOut={handleLogOut}/>
+      <div className=''>
+        <NavIcon />
+      </div>
+    </>
   )
 }
 

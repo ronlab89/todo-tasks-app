@@ -22,11 +22,29 @@
 .nav-home {
     position: absolute;
     top: 0;
+    left: -300px;
+    width: 300px;
+    min-height: 100vh;
+    background-color: var(--dark);
+    color: var(--marfil);
+    transition: all .5s ease;
+}
+
+.nav-home-active {
+    position: absolute;
+    top: 0;
     left: 0;
     width: 300px;
     min-height: 100vh;
     background-color: var(--dark);
     color: var(--marfil);
+    transition: all .5s ease;
+}
+
+.nav-home header {
+    width: 100%;
+    height: 10%;
+    padding: 0.3rem 0.5rem;
 }
 
 .logo-dark {
@@ -39,4 +57,16 @@
     height: 8px;
     border-radius: 50%;
     color: var(--orange);
+}
+
+.menu-links {
+    width: 100%;
+    height: 30%;
+    padding: 1rem;
+}
+
+.projects {
+    width: 100%;
+    height: 60%;
+    padding: 1rem;
 }

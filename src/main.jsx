@@ -12,11 +12,14 @@ import Register from './routes/Register'
 import Home from './routes/Home'
 import {UserProvider} from './context/UserProvider'
 import NotFound from './routes/NotFound'
+import { NavIconProvider } from './context/NavIconProvider'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
     <UserProvider>
+      <NavIconProvider>
+
       <Routes>
 
         <Route path='/' element={<App />}>
@@ -32,6 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
       </Routes>
+      </NavIconProvider>
     </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

@@ -18,3 +18,7 @@
   --font-text-primary: 'Joan', serif;
   --font-text-secondary: 'Poppins', sans-serif;
 }
+
+.iconMenu {
+  cursor: pointer;
+}

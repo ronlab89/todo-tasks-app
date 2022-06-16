@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { navIconContext } from '../context/NavIconProvider'
 import '../css/navIcon.css'
 
 const NavIcon = () => {
+
+  const {handleToggleMenu} = useContext(navIconContext);
+
   return (
-    <div>NavIcon</div>
+    <div className='iconMenu' onClick={handleToggleMenu}>NavIcon</div>
   )
 }
 
