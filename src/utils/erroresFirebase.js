@@ -30,10 +30,10 @@ export const erroresFirebase = (code) => {
                 code: 'email',
                 message: 'Email no existe'
             };
-        case 'auth/network-request-failed':
+        case 'auth/missing-email':
             return {
                 code: 'emailReset',
-                message: 'Error de conexion!'
+                message: 'No se encontro el correo electonico en nuestro servidor, Intenta de nuevo'
             };
     }
 }

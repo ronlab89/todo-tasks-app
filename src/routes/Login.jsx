@@ -18,7 +18,6 @@ import Title from '../components/Title'
 import FormErrors from '../components/FormErrors'
 import LoadingButton from '../components/LoadingButton'
 import ModalPassword from '../components/ModalPassword'
-import NavbarHome from '../components/NavbarHome'
 
 const Login = () => {
 
@@ -27,7 +26,6 @@ const Login = () => {
   const {register, handleSubmit, formState: {errors}, setError, getValues} = useForm();
   const {required, validateTrim, minLength, patternEmail} = formValidate();
   const [loading, setLoading] = useState({});
-  const [emailPasswordReset, setEmailPasswordReset] = useState();
 
   const navigate = useNavigate();
 
@@ -62,34 +60,32 @@ const Login = () => {
     }
   }
 
-  const handlePasswordReset = async() => {
-    console.log('Working Reset');
+  
+  const handlePasswordReset = async(email) => {
     try {
       setLoading(prev => ({...prev, reset: true}));
-      await passwordReset(emailPasswordReset);
+      await passwordReset(email);
+      toast.success('🦄 Email de recuperacion enviado!', {
+        position: "top-center",
+        autoClosed: 5000,
+        hideProgrssBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      navigate('/login');
     } catch (error) {
       console.log(error.code);
       const {code, message} = erroresFirebase(error.code);
-      setError(code, {message})
+      setError(code, {message});
     } finally {
       setLoading(prev => ({...prev, reset: false}));
-      if(!errors) {
-        toast.success('🦄 Email de recuperacion enviado!', {
-          position: "top-center",
-          autoClosed: 5000,
-          hideProgrssBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
       }
-    }
   }
 
   return (
     <>
-    <NavbarHome />
     <div className="page">
       <NavbarWelcome />
       <section className='row'>
@@ -122,7 +118,7 @@ const Login = () => {
               }
             </form>
             
-            <ModalPassword setEmailPasswordReset={setEmailPasswordReset} handlePasswordReset={handlePasswordReset} loading={loading} />
+            <ModalPassword handlePasswordReset={handlePasswordReset} loading={loading} />
             <hr />
             <p className='lead'>O</p>
             {

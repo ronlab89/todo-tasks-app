@@ -10,7 +10,7 @@ import Input from '../components/Input'
 import FormErrors from '../components/FormErrors'
 import LoadingButton from './LoadingButton';
 
-const ModalPassword = ({setEmailPasswordReset, handlePasswordReset, loading}) => {
+const ModalPassword = ({ handlePasswordReset, loading}) => {
 
   const {register, handleSubmit, formState: {errors}} = useForm();
   const {required, patternEmail, validateTrim} = formValidate();
@@ -23,8 +23,8 @@ const ModalPassword = ({setEmailPasswordReset, handlePasswordReset, loading}) =>
   }
 
   const onSubmit = ({emailReset}) => {
-    setEmailPasswordReset(emailReset);
-    handlePasswordReset();
+    // setEmailPasswordReset(emailReset);
+    handlePasswordReset(emailReset);
   }
 
   return (
