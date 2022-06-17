@@ -27,6 +27,13 @@
     color: var(--dark);
 }
 
+.title-home {
+  font-family: var(--font-text-secondary);
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--dark);
+}
+
 /* Responsive Design */
 
 @media (min-width: 768px) and (max-width: 992px) {
