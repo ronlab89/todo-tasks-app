@@ -79,8 +79,18 @@ a:hover {
     padding: 1rem;
 }
 
+.projects h3 {
+    font-family: var(--font-text-secondary);
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
 .menu-link {
     color: var(--marfil) !important;
     cursor: pointer;
     margin-bottom: 1rem;
+}
+
+.link-home {
+    color: var(--marfil);
 }

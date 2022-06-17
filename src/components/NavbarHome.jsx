@@ -3,13 +3,15 @@ import '../css/navbarHome.css'
 import darkLogo from '/assets/images/logo_dark_nb.png'
 import { Link } from 'react-router-dom'
 import {FaHome, FaSignOutAlt, FaPlus, FaEdit, FaEraser, FaStar, FaProjectDiagram, FaCheck} from 'react-icons/fa'
+import { navIconContext } from '../context/NavIconProvider'
+import { userContext } from '../context/UserProvider'
 
 import NavIcon from '../components/NavIcon'
-import { navIconContext } from '../context/NavIconProvider'
 
 const NavbarHome = ({handleLogOut}) => {
 
     const {toggleMenu} = useContext(navIconContext);
+    const {user} = useContext(userContext);
 
   return (
     <nav className={`${toggleMenu ? 'nav-home-active' : 'nav-home'}`}>
@@ -23,16 +25,20 @@ const NavbarHome = ({handleLogOut}) => {
         </header>
         <section className='menu-links'>
             <ul className='navbar-nav'>
-                <li className='nav-item menu-link'><FaHome /><Link to={'/home'}> Home</Link></li>
+                <li className='nav-item menu-link'>
+                    <FaHome />
+                    <Link to={'/'}> <span className='link-home'>Home</span></Link>
+                </li>
                 <li className='nav-item menu-link' onClick={handleLogOut}><FaSignOutAlt /> LogOut</li>
             </ul>
         </section>
+        <hr />
         <section className='projects'>
-            <div className='d-flex flex-row justify-content-between align-items-center'>
-                <h3 className='mb-4'>Proyectos</h3>
+            <div className='d-flex justify-content-between'>
+                <h3 className=''>Proyectos</h3>
                 <span className=''><FaPlus /></span>
             </div>
-            <article className='project'>
+            <article className='project mt-4'>
                 Proyecto desde DB
             </article>
         </section>

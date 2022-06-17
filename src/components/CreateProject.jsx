@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { navIconContext } from '../context/NavIconProvider'
-import '../css/CreateProject.css'
+import '../css/createProject.css'
 
 import NavIcon from '../components/NavIcon'
 import Title from '../components/Title'
