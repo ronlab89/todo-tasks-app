@@ -11,12 +11,12 @@ const CreateProject = () => {
 
   return (
     <section className={`${toggleMenu ? 'page-project-active' : 'page-project'}`}>
-        <header className='d-flex flex-row justify-content-between align-items-center'>
-            <div>
-                <div className={`${toggleMenu ? 'd-none' : 'd-block'}`}>
+        <header className='d-flex justify-content-between align-items-center'>
+            <div className='d-flex justify-content-between align-items-center'>
+                <div className={`${toggleMenu ? 'd-none' : 'd-block'} ms-3`}>
                     <NavIcon />
                 </div>
-                <Title text='Inicio' className='title-home' />
+                <Title text='Inicio' className='title-home mb-0 ms-3' />
             </div>
             <div>
                 User

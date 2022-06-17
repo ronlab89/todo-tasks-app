@@ -13,7 +13,7 @@ const NavbarHome = ({handleLogOut}) => {
 
   return (
     <nav className={`${toggleMenu ? 'nav-home-active' : 'nav-home'}`}>
-        <header className='d-flex flex-row justify-content-between align-items-center'>
+        <header className='d-flex flex-row justify-content-between align-items-center px-2 py-2'>
             <div>
                 <img src={darkLogo} alt="Logo Ronlabdev" className='logo-dark' />
             </div>

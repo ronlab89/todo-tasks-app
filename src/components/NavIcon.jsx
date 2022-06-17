@@ -7,7 +7,13 @@ const NavIcon = () => {
   const {handleToggleMenu} = useContext(navIconContext);
 
   return (
-    <div className='iconMenu' onClick={handleToggleMenu}>NavIcon</div>
+    <>
+      <div className='iconMenu' onClick={handleToggleMenu}>
+        <span className="circle"></span>
+        <span className="circle"></span>
+        <span className="circle"></span>
+      </div>
+    </>
   )
 }
 
