@@ -7,8 +7,9 @@ const RequireAuth = () => {
     const { user } = useContext(userContext);
 
     if(!user) {
-        return <Navigate to={'/welcome'} />
+        return <Navigate to={'/'} />
     }
+
 
   return (
     <div className='home'>

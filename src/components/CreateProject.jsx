@@ -4,6 +4,7 @@ import '../css/CreateProject.css'
 
 import NavIcon from '../components/NavIcon'
 import Title from '../components/Title'
+import UserIcon from '../components/UserIcon'
 
 const CreateProject = () => {
 
@@ -19,7 +20,7 @@ const CreateProject = () => {
                 <Title text='Inicio' className='title-home mb-0 ms-3' />
             </div>
             <div>
-                User
+                <UserIcon />
             </div>
         </header>
     </section>

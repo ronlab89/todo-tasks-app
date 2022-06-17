@@ -78,6 +78,7 @@ a {
   font-family: var(--font-text-primary);
   font-weight: bold;
   font-size: 2rem;
+  color: var(--dark);
 }
 
 .not-found {

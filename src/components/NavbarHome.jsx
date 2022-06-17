@@ -23,8 +23,8 @@ const NavbarHome = ({handleLogOut}) => {
         </header>
         <section className='menu-links'>
             <ul className='navbar-nav'>
-                <li className='nav-link'><FaHome /><Link to={'/home'}/> Home</li>
-                <li className='nav-link' onClick={handleLogOut}><FaSignOutAlt /> LogOut</li>
+                <li className='nav-item menu-link'><FaHome /><Link to={'/home'}> Home</Link></li>
+                <li className='nav-item menu-link' onClick={handleLogOut}><FaSignOutAlt /> LogOut</li>
             </ul>
         </section>
         <section className='projects'>

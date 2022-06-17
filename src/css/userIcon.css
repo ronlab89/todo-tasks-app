@@ -19,22 +19,16 @@
   --font-text-secondary: 'Poppins', sans-serif;
 }
 
-.page-project {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    padding: 1rem;
-    transition: all .5s ease;
+.user-card {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--aqua);
+    color: var(--marfil);
 }
 
-.page-project-active {
-    position: relative;
-    top: 0;
-    left: 300px;
-    max-width: calc(100vw - 300px);
-    height: 100vh;
-    padding: 1rem;
-    transition: all .5s ease;
+.user-card h5 {
+    font-family: var(--font-text-secondary);
+    font-weight: 700;
+    font-size: 0.8rem;
 }

@@ -65,8 +65,22 @@
     padding: 1rem;
 }
 
+a {
+    color: var(--marfil);
+}
+
+a:hover {
+    color: var(--marfil);
+}
+
 .projects {
     width: 100%;
     height: 60%;
     padding: 1rem;
+}
+
+.menu-link {
+    color: var(--marfil) !important;
+    cursor: pointer;
+    margin-bottom: 1rem;
 }

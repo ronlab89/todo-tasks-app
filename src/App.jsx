@@ -1,11 +1,33 @@
-import { Outlet } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import LayoutApp from './components/LayoutApp'
+import RequireAuth from './components/RequireAuth'
+
+import Welcome from './routes/Welcome'
+import Login from './routes/Login'
+import Register from './routes/Register'
+import Home from './routes/Home'
+import NotFound from './routes/NotFound'
 
 function App() {
 
   return (
     <>
-      <Outlet />
+      <Routes>
+
+        <Route path='/' element={<RequireAuth />}>
+          <Route index element={<Home />} />
+        </Route>
+
+        <Route path='/' element={<LayoutApp />}>
+        <Route path='/welcome' element={<Welcome />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+        </Route>
+
+        <Route path='*' element={<NotFound />} />
+
+      </Routes>
     </>
   )
 }
