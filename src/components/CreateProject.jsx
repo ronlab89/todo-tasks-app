@@ -7,6 +7,7 @@ import Title from '../components/Title'
 import UserIcon from '../components/UserIcon'
 import moment from 'moment'
 import { userContext } from '../context/UserProvider'
+import ProjectForm from './ProjectForm'
 
 const CreateProject = () => {
 
@@ -47,6 +48,9 @@ const CreateProject = () => {
                     <span className='date'>{todayDate}</span>
                 </div>
             </div>
+        <section className='project-area'>
+            <ProjectForm />
+        </section>
     </section>
   )
 }

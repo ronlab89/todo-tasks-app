@@ -36,7 +36,7 @@ const NavbarHome = ({handleLogOut}) => {
         <section className='projects'>
             <div className='d-flex justify-content-between'>
                 <h3 className=''>Proyectos</h3>
-                <span className=''><FaPlus /></span>
+               <Link to={'/'}><span className=''><FaPlus /></span></Link>
             </div>
             <article className='project mt-4'>
                 Proyecto desde DB

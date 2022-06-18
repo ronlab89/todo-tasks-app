@@ -45,3 +45,17 @@
   font-size: 1rem;
   color: var(--dark);
 }
+
+.project-area {
+  width: 100%;
+  height: fit-content;
+  padding: 2rem;
+}
+
+.card-new-project {
+  width: 500px;
+  height: 500px;
+  border-radius: 10px;
+  background-color: var(--lightGray);
+  padding: 1rem 1.5rem;
+}
