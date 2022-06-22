@@ -1,22 +1,28 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import {formValidate} from '../utils/formValidate'
 
 import Title from './Title'
 import Input from './Input'
 import InputSelectColor from './InputSelectColor'
 import InputSelect from './InputSelect'
+import InputSelectIcons from './InputSelectIcons'
+import Button from './Button'
 
 const ProjectForm = () => {
 
-    const {register, handleSubmit, formState: {errors}, setError} = useForm();
+    const {register, control, handleSubmit, formState: {errors}, setError} = useForm();
     const {required, validateTrim} = formValidate();
+
+    const onSubmit = (data) => {
+        console.log(data);
+    } 
 
   return (
     <>
         <section className='card card-new-project'>
             <Title text='Nuevo Proyecto' className='new-project' />
-            <form className='mt-4'>
+            <form className='mt-4' onSubmit={handleSubmit(onSubmit)}>
                 <Input
                   label='Nombre del proyecto'
                   type='text'
@@ -31,19 +37,42 @@ const ProjectForm = () => {
                 />
 
                 <div className="mb-3">
-                    <InputSelectColor/>
+                    <Controller
+                        name="selectColor"
+                        control={control}
+                        render={({ field }) =>
+                        <InputSelectColor
+                        {...field} 
+                        />
+                        }
+                    />
                 </div>
+
                 <div className="mb-3">
-                    <InputSelect optionsArray={[
-                        { value: 'diseño', label: 'Diseño' },
-                        { value: 'marketing', label: 'Marketing' },
-                        { value: 'blockchain', label: 'Blockchain'},
-                        { value: 'desarrollo_frontend', label: 'Desarrollo Frontend' },
-                        { value: 'desarrollo_backend', label: 'Desarrollo Backend'},
-                        { value: 'reposteria', label: 'Reposteria'},
-                        { value: 'idiomas', label: 'Idiomas'}
-                    ]}/>
+                <Controller
+                    name="selectIcon"
+                    control={control}
+                    render={({ field }) =>
+                    <InputSelectIcons 
+                    {...field} 
+                    />
+                    }
+                />
                 </div>
+
+                <div className="mb-3">
+                <Controller
+                    name="selectWorkArea"
+                    control={control}
+                    render={({ field }) =>
+                    <InputSelect
+                    {...field} 
+                    />
+                    }
+                />
+                </div>
+
+                <Button type='submit' text='Crear' className='secondary-button'/>
             </form>
         </section>
     </>

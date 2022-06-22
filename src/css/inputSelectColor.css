@@ -1,8 +1,79 @@
-.div-select {
-    width: 5px;
-    height: 5px;
+@import url('https://fonts.googleapis.com/css2?family=Joan&family=Poppins:wght@100;200;300;400;500;700;900&family=Rubik:wght@400;500;600;700;900&display=swap');
+
+:root {
+  /* Colors */
+  --white: #fff;
+  --black: #000;
+  --orange: #ff6b6b;
+  --marfil: #f7fff7;
+  --dark: #292f36;
+  --aqua2: hsl(176, 89%, 74%);
+  --aqua: #4ecdc4;
+  --lightYellow: #ffe66d;
+  --lightGray: #f5f5f5;
+  --red: #ff0000;
+  --purple: #9747ff;
+
+  /* Fonts */
+  --font-title: 'Rubik', sans-serif;;
+  --font-text-primary: 'Joan', serif;
+  --font-text-secondary: 'Poppins', sans-serif;
 }
 
-.gray-select {
-    background-color: #BFBCBC;
+/* Backgrounds para select de colores */
+.rect {
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+}
+.oceano {
+    background-color: var(--aqua);
+}
+.azul {
+    background-color: #526DC6;
+}
+.purpura {
+    background-color: #867DDC;
+}
+.violeta {
+    background-color: #9747ff;
+}
+.rojo {
+    background-color: #FF0000;
+}
+.rosa {
+    background-color: #F1A5E8;
+}
+.naranja {
+    background-color: var(--orange);
+}
+.amarillo {
+    background-color: var(--lightYellow);
+}
+.verde {
+    background-color: #5DA283;
+}
+.oliva {
+    background-color: #A9C953;
+}
+.gris {
+    background-color: #656667;
+}
+.plata {
+    background-color: var(--lightGray);
+}
+.oscuro {
+    background-color: var(--dark);
+}
+
+/* Select */
+
+.css-1s2u09g-control:hover {
+    border-color: hsl(0, 0%, 70%); 
+}
+.css-1pahdxg-control, .css-1s2u09g-control {
+    box-shadow: none !important;
+}
+.css-1pahdxg-control:hover {
+    border-color: var(--aqua) !important;
 }
