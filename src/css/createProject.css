@@ -63,3 +63,23 @@
   background-color: var(--lightGray);
   padding: 1rem 1.5rem;
 }
+
+.card-fav-project {
+  width: 500px;
+  height: 370px;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+}
+
+.card-count-project, .card-finish-task {
+  width: 500px;
+  height: 100px;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+}
+
+.count-project {
+  font-family: var(--font-text-secondary);
+  font-weight: 500;
+  font-size: 1rem;
+}

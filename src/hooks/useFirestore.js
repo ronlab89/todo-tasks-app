@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { collection, getDocs, doc, query, where } from 'firebase/firestore';
+import { collection, getDocs, doc, query, where, addDoc } from 'firebase/firestore';
 import {auth, db} from '../firebaseConfig'
 
 export const useFirestore = () => {
@@ -22,6 +22,26 @@ export const useFirestore = () => {
             setLoading(prev => ({...prev, getProjects: false}));
         }
     }
+
+    const addProject = async(project, color, icon, area) => {
+        try {
+            setLoading(prev => ({...prev, add: true}));
+            const newProject = {
+                project: project,
+                color: color,
+                icon: icon,
+                area: area,
+                uid: auth.currentUser.uid
+            }
+            const projectRef = collection(db, 'Projects');
+            await addDoc(projectRef, newProject)
+            setDataProjects([...dataProjects, newProject])
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(prev => ({...prev, add: false}));
+        }
+    }
  
-    return {dataProjects, error, loading, getProjects};
+    return {dataProjects, error, setError, loading, getProjects, addProject};
 }

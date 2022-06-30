@@ -9,6 +9,9 @@ import moment from 'moment'
 import 'moment/locale/es'
 import { userContext } from '../context/UserProvider'
 import ProjectForm from './ProjectForm'
+import ProjectFavorite from './ProjectFavorite'
+import ProjectCount from './ProjectCount'
+import FinishTasks from './FinishTasks'
 
 const CreateProject = () => {
 
@@ -52,8 +55,19 @@ const CreateProject = () => {
                     <span className='date'>{todayDate}</span>
                 </div>
             </div>
-        <section className='project-area'>
-            <ProjectForm />
+        <section className='project-area row g-5'>
+            <article className='col-lg-6'>
+                <ProjectForm />
+            </article>
+            <article className='col-lg-6'>
+                <ProjectFavorite />
+            </article>
+            <article className='col-lg-6'>
+                <ProjectCount />
+            </article>
+            <article className='col-lg-6'>
+                <FinishTasks />
+            </article>
         </section>
     </section>
   )

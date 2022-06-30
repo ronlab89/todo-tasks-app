@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/button.css'
 
 const LoadingButton = ({text, color}) => {
   return (
