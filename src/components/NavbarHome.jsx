@@ -7,11 +7,23 @@ import { navIconContext } from '../context/NavIconProvider'
 import { userContext } from '../context/UserProvider'
 
 import NavIcon from '../components/NavIcon'
+import { useEffect } from 'react'
+import { useFirestore } from '../hooks/useFirestore'
+import Loading from './Loading'
 
 const NavbarHome = ({handleLogOut}) => {
-
     const {toggleMenu} = useContext(navIconContext);
     const {user} = useContext(userContext);
+
+    const {dataProjects, error, loading, getProjects} = useFirestore()
+
+    useEffect(() => {
+        getProjects();
+        console.log('consultando datos')
+    }, [])
+
+    console.log(dataProjects);
+
 
   return (
     <nav className={`${toggleMenu ? 'nav-home-active' : 'nav-home'}`}>
@@ -39,7 +51,27 @@ const NavbarHome = ({handleLogOut}) => {
                <Link to={'/'}><span className=''><FaPlus /></span></Link>
             </div>
             <article className='project mt-4'>
-                Proyecto desde DB
+                {
+                    (error) && <p>{error}</p>
+                }
+                {
+                (loading.getProjects) ? 
+                    <Loading text={'Cargando proyectos'} color='primary' />
+                    :
+                    dataProjects.map(pro => (
+                        <div className='d-flex justify-content-between align-items-center'>
+                            <div className='d-flex justify-content-start align-items-center'>
+                                <div className='color-project' style={{backgroundColor: pro.color}}></div>
+                                <p className='mb-0 ms-2'>{pro.project}</p>
+                            </div>
+                            <div className=''>
+                                <span className='ms-2'><FaEdit /></span>
+                                <span className='ms-2'><FaEraser /></span>
+                                <span className='ms-2'><FaStar /></span>
+                            </div>
+                        </div>
+                    ))
+                }
             </article>
         </section>
     </nav>

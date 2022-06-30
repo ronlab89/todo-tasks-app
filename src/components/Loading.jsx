@@ -2,10 +2,10 @@ import React from 'react'
 
 const Loading = ({text, color}) => {
   return (
-    <div className="text-center">
-    <div className={`spinner-grow ${color}`} role="status">
-        <span className=''>{text}</span>
+    <div className="text-start">
+    <div className={`spinner-grow spinner-grow-sm ${color}`} role="status">
     </div>
+        <span className=''>{text}</span>
     </div>
   )
 }
