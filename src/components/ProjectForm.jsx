@@ -14,8 +14,18 @@ const ProjectForm = () => {
     const {register, control, handleSubmit, formState: {errors}, setError} = useForm();
     const {required, validateTrim} = formValidate();
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async({project, selectColor, selectIcon, selectWorkArea}) => {
+        const {color} = selectColor;
+        const {value: icon} = selectIcon;
+        const {value: area} = selectWorkArea;
+        console.log(project, color, icon, area); 
+        try {
+            const datos = await project;
+        } catch (error) {
+            console.log(error)
+        }finally {
+
+        }
     } 
 
   return (

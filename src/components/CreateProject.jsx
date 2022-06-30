@@ -6,6 +6,7 @@ import NavIcon from '../components/NavIcon'
 import Title from '../components/Title'
 import UserIcon from '../components/UserIcon'
 import moment from 'moment'
+import 'moment/locale/es'
 import { userContext } from '../context/UserProvider'
 import ProjectForm from './ProjectForm'
 
@@ -14,7 +15,8 @@ const CreateProject = () => {
     const {toggleMenu} = useContext(navIconContext);
     const {user} =useContext(userContext);
 
-    const todayDate = moment().format('MMMM Do YYYY, h:mm:ss a');
+    moment.locale('es');
+    const todayDate = moment().format('MMMM DD YYYY, LTS');
     const todayTime = moment().hours();
 
     let saidHi;
@@ -23,8 +25,10 @@ const CreateProject = () => {
         saidHi = 'Buenos dias';
     }else if(todayTime >= 12 && todayTime < 19) {
         saidHi = 'Buenas tardes';
-    } else if(todayTime >= 19 && todayTime < 4) {
+    }else if(todayTime >= 19 && todayTime <23) {
         saidHi = 'Buenas noches'
+    }else if(todayTime >=0 && todayTime <4) {
+        saidHi = 'Buenas Noches'
     }
 
   return (

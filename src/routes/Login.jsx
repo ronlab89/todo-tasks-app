@@ -6,6 +6,7 @@ import { erroresFirebase } from '../utils/erroresFirebase'
 import { userContext } from '../context/UserProvider'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import '../css/button.css'
 
 import { FcGoogle } from 'react-icons/fc'
 import listCalendar from '/assets/images/listCalendar.jpg'

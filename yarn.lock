@@ -691,6 +691,18 @@
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.6.2.tgz#6d05fa126104c9907573364dc04147b89b530e15"
   integrity sha512-zThUKcqIU6utWzM93uEvhlh8qj8A5LMPFJPvk/ODb+8GSSif19xM2Lw1M2ijyBy8+6skSkQBbavPzOU5Oh/8tQ==
 
+"@fortawesome/fontawesome-common-types@6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.1.1.tgz#7dc996042d21fc1ae850e3173b5c67b0549f9105"
+  integrity sha512-wVn5WJPirFTnzN6tR95abCx+ocH+3IFLXAgyavnf9hUmN0CfWoDjPT/BAWsUVwSlYYVBeCLJxaqi7ZGe4uSjBA==
+
+"@fortawesome/free-regular-svg-icons@^6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-6.1.1.tgz#3f2f58262a839edf0643cbacee7a8a8230061c98"
+  integrity sha512-xXiW7hcpgwmWtndKPOzG+43fPH7ZjxOaoeyooptSztGmJxCAflHZxXNK0GcT0uEsR4jTGQAfGklDZE5NHoBhKg==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "6.1.1"
+
 "@grpc/grpc-js@^1.3.2":
   version "1.6.7"
   resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.6.7.tgz#4c4fa998ff719fe859ac19fe977fdef097bb99aa"
@@ -910,6 +922,11 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
+
+bootstrap-icons@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/bootstrap-icons/-/bootstrap-icons-1.8.3.tgz#14c15e26deaddd42af9f88c4d81f7c45bf26aa98"
+  integrity sha512-s5kmttnbq4BXbx3Bwnj39y+t7Vc3blTtyD77W3aYQ1LlNoS3lNbbGvSYhIbg26Im8KmjScyFpHEevlPOBcIDdA==
 
 bootstrap@^5.1.3:
   version "5.1.3"
