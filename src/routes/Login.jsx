@@ -54,8 +54,8 @@ const Login = () => {
       navigate('/');
     } catch (error) {
       console.log(error.code);
-      const {code, message} = erroresFirebase(error.code);
-      setError(code, {message})
+      // const {code, message} = erroresFirebase(error.code);
+      // setError(code, {message})
     } finally {
       setLoading(prev => ({...prev, loginApiGoogle: false}));
     }
