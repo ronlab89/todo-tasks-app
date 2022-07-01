@@ -35,7 +35,7 @@ const Login = () => {
     try {
       setLoading(prev => ({...prev, loginEmail: true}));
       await logIn(email, password)
-      navigate('/');
+      navigate('/home');
     } catch (error) {
       console.log(error.code);
       const {code, message} = erroresFirebase(error.code);
@@ -51,7 +51,7 @@ const Login = () => {
     try {
       setLoading(prev => ({...prev, loginApiGoogle: true}));
       await loginGoogle();
-      navigate('/');
+      navigate('/home');
     } catch (error) {
       console.log(error.code);
       // const {code, message} = erroresFirebase(error.code);

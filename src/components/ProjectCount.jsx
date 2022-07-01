@@ -6,13 +6,13 @@ const ProjectCount = () => {
 
   const {dataProjects, getProjects} = useFirestore();
 
-  useEffect(() => {
-    getProjects();
-    console.log('consultando datos')
-}, []);
+//   useEffect(() => {
+//     getProjects();
+//     console.log('consultando datos')
+// }, []);
 
 
-  console.log(dataProjects)
+  // console.log(dataProjects)
 
   return (
     <section className='card card-count-project'>

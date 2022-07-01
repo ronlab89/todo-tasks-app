@@ -15,14 +15,14 @@ const NavbarHome = ({handleLogOut}) => {
     const {toggleMenu} = useContext(navIconContext);
     const {user} = useContext(userContext);
 
-    const {dataProjects, error, loading, getProjects, addProject} = useFirestore()
+    const {dataProjects, error, loading} = useFirestore()
 
-    useEffect(() => {
-        getProjects();
-        console.log('consultando datos')
-    }, []);
+    // useEffect(() => {
+    //     getProjects();
+    //     console.log('consultando datos')
+    // }, []);
 
-    console.log(dataProjects);
+    // console.log(dataProjects);
 
 
   return (
@@ -39,7 +39,7 @@ const NavbarHome = ({handleLogOut}) => {
             <ul className='navbar-nav'>
                 <li className='nav-item menu-link'>
                     <FaHome />
-                    <Link to={'/'}> <span className='link-home'>Home</span></Link>
+                    <Link to={'/home'}> <span className='link-home'>Home</span></Link>
                 </li>
                 <li className='nav-item menu-link' onClick={handleLogOut}><FaSignOutAlt /> LogOut</li>
             </ul>
@@ -48,7 +48,7 @@ const NavbarHome = ({handleLogOut}) => {
         <section className='projects'>
             <div className='d-flex justify-content-between'>
                 <h3 className=''>Proyectos</h3>
-               <Link to={'/'}><span className=''><FaPlus /></span></Link>
+               <Link to={'/home'}><span className=''><FaPlus /></span></Link>
             </div>
             <article className='project mt-4'>
                 {
@@ -59,7 +59,7 @@ const NavbarHome = ({handleLogOut}) => {
                     <Loading text={'Cargando proyectos'} color='primary' />
                     :
                     dataProjects.map(pro => (
-                        <div className='d-flex justify-content-between align-items-center mb-2'>
+                        <div className='d-flex justify-content-between align-items-center mb-2' key={pro.uid}>
                             <div className='d-flex justify-content-start align-items-center'>
                                 <div className='color-project' style={{backgroundColor: pro.color}}></div>
                                 <p className='mb-0 ms-2'>{pro.project}</p>

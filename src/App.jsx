@@ -16,11 +16,11 @@ function App() {
       <Routes>
 
         <Route path='/' element={<RequireAuth />}>
-          <Route index element={<Home />} />
+          <Route path='/home' element={<Home />} />
         </Route>
 
         <Route path='/' element={<LayoutApp />}>
-        <Route path='/welcome' element={<Welcome />} />
+        <Route index element={<Welcome />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
         </Route>

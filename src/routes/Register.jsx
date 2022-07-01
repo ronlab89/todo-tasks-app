@@ -29,7 +29,7 @@ const Register = () => {
         try {
           setLoading(true);
           await userCreate(email, password);
-          navigate('/');
+          navigate('/home');
         } catch (error) {
           console.log(error.code)
           const {code, message} = erroresFirebase(error.code)

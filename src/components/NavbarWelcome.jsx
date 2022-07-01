@@ -16,12 +16,12 @@ const NavbarWelcome = () => {
         <div className="col-2 text-end">
           {
             user ? 
-            <Link to={'/'}>
+            <Link to={'/home'}>
               <img src={logo} alt="Logo Ronlabdev" width='50' height='33px' className=''/>
               <p className='nameLogo'>RONLABDEV</p>
             </Link>
             :  
-          <Link to={'/welcome'}>
+          <Link to={'/'}>
             <img src={logo} alt="Logo Ronlabdev" width='50' height='33px' className=''/>
             <p className='nameLogo'>RONLABDEV</p>
           </Link>

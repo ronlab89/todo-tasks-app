@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { collection, getDocs, doc, query, where, addDoc } from 'firebase/firestore';
 import {auth, db} from '../firebaseConfig'
 
@@ -7,6 +7,12 @@ export const useFirestore = () => {
     const [dataProjects, setDataProjects] = useState([]);
     const [error, setError] = useState();
     const [loading, setLoading] = useState({});
+
+    useEffect(() => {
+        getProjects();
+        console.log('consultando datos')
+    }, []);
+
     
     const getProjects = async() => {
         try {
@@ -43,5 +49,5 @@ export const useFirestore = () => {
         }
     }
  
-    return {dataProjects, error, setError, loading, getProjects, addProject};
+    return {dataProjects, error, setError, loading, addProject};
 }
