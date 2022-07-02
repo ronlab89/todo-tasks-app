@@ -15,14 +15,7 @@ const NavbarHome = ({handleLogOut}) => {
     const {toggleMenu} = useContext(navIconContext);
     const {user} = useContext(userContext);
 
-    const {dataProjects, error, loading} = useFirestore()
-
-    // useEffect(() => {
-    //     getProjects();
-    //     console.log('consultando datos')
-    // }, []);
-
-    // console.log(dataProjects);
+    const {dataProjects, error, loading} = useFirestore();
 
 
   return (
@@ -59,7 +52,7 @@ const NavbarHome = ({handleLogOut}) => {
                     <Loading text={'Cargando proyectos'} color='primary' />
                     :
                     dataProjects.map(pro => (
-                        <div className='d-flex justify-content-between align-items-center mb-2' key={pro.uid}>
+                        <div className='d-flex justify-content-between align-items-center mb-2' key={pro.idpro}>
                             <div className='d-flex justify-content-start align-items-center'>
                                 <div className='color-project' style={{backgroundColor: pro.color}}></div>
                                 <p className='mb-0 ms-2'>{pro.project}</p>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, doc, query, where, addDoc } from 'firebase/firestore';
 import {auth, db} from '../firebaseConfig'
+import { nanoid } from 'nanoid'
 
 export const useFirestore = () => {
 
@@ -37,7 +38,8 @@ export const useFirestore = () => {
                 color: color,
                 icon: icon,
                 area: area,
-                uid: auth.currentUser.uid
+                uid: auth.currentUser.uid,
+                idpro: nanoid()
             }
             const projectRef = collection(db, 'Projects');
             await addDoc(projectRef, newProject)

@@ -4,15 +4,7 @@ import { useFirestore } from '../hooks/useFirestore'
 
 const ProjectCount = () => {
 
-  const {dataProjects, getProjects} = useFirestore();
-
-//   useEffect(() => {
-//     getProjects();
-//     console.log('consultando datos')
-// }, []);
-
-
-  // console.log(dataProjects)
+  const {dataProjects} = useFirestore();
 
   return (
     <section className='card card-count-project'>
