@@ -100,3 +100,7 @@ a:hover {
 .link-home {
     color: var(--marfil);
 }
+
+.toolProject {
+    cursor: pointer;
+}

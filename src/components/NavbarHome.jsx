@@ -7,7 +7,6 @@ import { navIconContext } from '../context/NavIconProvider'
 import { userContext } from '../context/UserProvider'
 
 import NavIcon from '../components/NavIcon'
-import { useEffect } from 'react'
 import { useFirestore } from '../hooks/useFirestore'
 import Loading from './Loading'
 
@@ -15,7 +14,12 @@ const NavbarHome = ({handleLogOut}) => {
     const {toggleMenu} = useContext(navIconContext);
     const {user} = useContext(userContext);
 
-    const {dataProjects, error, loading} = useFirestore();
+    const {dataProjects, error, loading, deleteProject} = useFirestore();
+
+    const handleDeleteProject = async(idpro) => {
+        console.log('Eliminando Proyecto', idpro);
+        await deleteProject(idpro);
+    }
 
 
   return (
@@ -58,9 +62,14 @@ const NavbarHome = ({handleLogOut}) => {
                                 <p className='mb-0 ms-2'>{pro.project}</p>
                             </div>
                             <div className=''>
-                                <span className='ms-2'><FaEdit /></span>
-                                <span className='ms-2'><FaEraser /></span>
-                                <span className='ms-2'><FaStar /></span>
+                                <span className='ms-2 toolProject'><FaEdit /></span>
+                                {
+                                    loading[pro.idpro] ?
+                                    <span className='ms-2 spinner-grow spinner-grow-sm text-light' role='status'></span>
+                                    :
+                                    <span className='ms-2 toolProject' onClick={() => handleDeleteProject(pro.idpro)}><FaEraser /></span>
+                                }
+                                <span className='ms-2 toolProject'><FaStar /></span>
                             </div>
                         </div>
                     ))

@@ -10,10 +10,11 @@ import InputSelect from './InputSelect'
 import InputSelectIcons from './InputSelectIcons'
 import Button from './Button'
 import LoadingButton from './LoadingButton'
+import FormErrors from './FormErrors'
 
 const ProjectForm = () => {
 
-    const {register, control, handleSubmit, formState: {errors}, setError, reset} = useForm();
+    const {register, control, handleSubmit, formState: {errors}, setError, reset, rules} = useForm();
     const {required, validateTrim} = formValidate();
     const { addProject, loading, error } = useFirestore();
 
@@ -42,48 +43,53 @@ const ProjectForm = () => {
                   type='text'
                   placeholder='Ingrese nombre del proyecto'
                   id='newProject'
-                  error={errors.project}
                   name='project' 
                   {...register('project', {
                     required,
                     validate: validateTrim
                   })}
                 />
-
+                <FormErrors error={errors.project} />
                 <div className="mb-3">
                     <Controller
                         name="selectColor"
                         control={control}
+                        rules={{ required}}
                         render={({ field }) =>
                         <InputSelectColor
                         {...field} 
                         />
                         }
                     />
+                <FormErrors error={errors.selectColor} />
                 </div>
 
                 <div className="mb-3">
                 <Controller
                     name="selectIcon"
                     control={control}
+                    rules={{ required }}
                     render={({ field }) =>
                     <InputSelectIcons 
                     {...field} 
                     />
                     }
                 />
+                <FormErrors error={errors.selectIcon} />
                 </div>
 
                 <div className="mb-3">
                 <Controller
                     name="selectWorkArea"
                     control={control}
+                    rules={{ required }}
                     render={({ field }) =>
                     <InputSelect
                     {...field} 
                     />
                     }
                 />
+                <FormErrors error={errors.selectWorkArea} />
                 </div>
                 {
                     loading.add ? 
