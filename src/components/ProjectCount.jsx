@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
+import { useContext } from 'react'
 import { FaProjectDiagram} from 'react-icons/fa'
-import { useFirestore } from '../hooks/useFirestore'
+import { firestoreContext } from '../context/FirestoreProvider'
 
 const ProjectCount = () => {
 
-  const {dataProjects} = useFirestore();
+  const {dataProjects} = useContext(firestoreContext);
 
   return (
     <section className='card card-count-project'>

@@ -1,29 +1,27 @@
-import { useEffect, useState } from 'react';
-import { collection, getDocs, doc, query, where, setDoc, deleteDoc } from 'firebase/firestore';
-import {auth, db} from '../firebaseConfig'
-import { nanoid } from 'nanoid'
+import { createContext, useEffect, useState } from "react";
+import { collection, getDocs, doc, query, where, setDoc, deleteDoc, updateDoc } from 'firebase/firestore';
+import {auth, db} from '../firebaseConfig';
+import { nanoid } from 'nanoid';
 
-export const useFirestore = () => {
+const firestoreContext = createContext();
+
+const FirestoreProvider = ({children}) => {
 
     const [dataProjects, setDataProjects] = useState([]);
     const [error, setError] = useState();
     const [loading, setLoading] = useState({});
-
-    useEffect(() => {
-        getProjects();
-        console.log('consultando datos')
-    }, []);
-
+    const [dataEdit, setDataEdit] = useState(null);
     
     const getProjects = async() => {
         try {
             setLoading(prev => ({...prev, getProjects: true}))
-            const projectsRef = collection(db, 'Projects');
-            const q = query(projectsRef, where('uid', '==', auth.currentUser.uid)); 
+            const projectsRef = collection(db, "Projects");
+            const q = query(projectsRef, where("uid", "==", auth.currentUser.uid)); 
             const querySnapshot = await getDocs(q);
             const projectsDB = querySnapshot.docs.map(doc => (doc.data()));
             setDataProjects(projectsDB);
         } catch (error) {
+            console.log(error);
             setError(error.message);
         } finally {
             setLoading(prev => ({...prev, getProjects: false}));
@@ -65,6 +63,25 @@ export const useFirestore = () => {
             setLoading(prev => ({...prev, [idpro]: false}));
         }
     }
- 
-    return {dataProjects, error, setError, loading, addProject, deleteProject};
+
+    const updateProject = async(idpro, projectUpd) => {
+        try {
+            setLoading(prev => ({...prev, up: true}));
+            const projectRef = doc(db, 'Projects', idpro);
+            await updateDoc(projectRef, {project: projectUpd});
+        } catch (error) {
+            console.log(error);
+            setError(error.message);
+        } finally {
+            setLoading(prev => ({...prev, up: false}));
+        }
+    }
+
+    return (
+        <firestoreContext.Provider value={{dataProjects, setDataProjects, error, loading, dataEdit, setDataEdit, getProjects, addProject, deleteProject, updateProject}}>
+            {children}
+        </firestoreContext.Provider>
+    )
 }
+
+export { FirestoreProvider, firestoreContext };

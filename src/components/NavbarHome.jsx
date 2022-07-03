@@ -1,24 +1,36 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import '../css/navbarHome.css'
 import darkLogo from '/assets/images/logo_dark_nb.png'
 import { Link } from 'react-router-dom'
 import {FaHome, FaSignOutAlt, FaPlus, FaEdit, FaEraser, FaStar, FaProjectDiagram, FaCheck} from 'react-icons/fa'
 import { navIconContext } from '../context/NavIconProvider'
 import { userContext } from '../context/UserProvider'
+import { firestoreContext } from '../context/FirestoreProvider'
 
 import NavIcon from '../components/NavIcon'
-import { useFirestore } from '../hooks/useFirestore'
 import Loading from './Loading'
 
 const NavbarHome = ({handleLogOut}) => {
     const {toggleMenu} = useContext(navIconContext);
     const {user} = useContext(userContext);
 
-    const {dataProjects, error, loading, deleteProject} = useFirestore();
+    const {dataProjects, error, loading, getProjects, deleteProject, setDataEdit} = useContext(firestoreContext);
+
+     
+    useEffect(() => {
+        console.log('getProjects');
+        getProjects();
+    }, []);
+
 
     const handleDeleteProject = async(idpro) => {
         console.log('Eliminando Proyecto', idpro);
         await deleteProject(idpro);
+    }
+
+    const handleEditProject = async(pro) => {
+        console.log('Click Edit');
+        setDataEdit(pro);
     }
 
 
@@ -60,16 +72,17 @@ const NavbarHome = ({handleLogOut}) => {
                             <div className='d-flex justify-content-start align-items-center'>
                                 <div className='color-project' style={{backgroundColor: pro.color}}></div>
                                 <p className='mb-0 ms-2'>{pro.project}</p>
+                                <span className='d-none'>{pro.uid}</span>
                             </div>
                             <div className=''>
-                                <span className='ms-2 toolProject'><FaEdit /></span>
+                                <span className='ms-2 toolProject tool-update' onClick={() => handleEditProject(pro)}><FaEdit /></span>
                                 {
                                     loading[pro.idpro] ?
-                                    <span className='ms-2 spinner-grow spinner-grow-sm text-light' role='status'></span>
+                                    <span className='ms-2 spinner-grow spinner-grow-sm text-danger' role='status'></span>
                                     :
-                                    <span className='ms-2 toolProject' onClick={() => handleDeleteProject(pro.idpro)}><FaEraser /></span>
+                                    <span className='ms-2 toolProject tool-eraser' onClick={() => handleDeleteProject(pro.idpro)}><FaEraser /></span>
                                 }
-                                <span className='ms-2 toolProject'><FaStar /></span>
+                                <span className='ms-2 toolProject tool-star'><FaStar /></span>
                             </div>
                         </div>
                     ))

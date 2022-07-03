@@ -1,7 +1,6 @@
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import {formValidate} from '../utils/formValidate'
-import { useFirestore } from '../hooks/useFirestore'
 
 import Title from './Title'
 import Input from './Input'
@@ -11,27 +10,29 @@ import InputSelectIcons from './InputSelectIcons'
 import Button from './Button'
 import LoadingButton from './LoadingButton'
 import FormErrors from './FormErrors'
+import { useContext } from 'react'
+import { firestoreContext } from '../context/FirestoreProvider'
 
 const ProjectForm = () => {
 
     const {register, control, handleSubmit, formState: {errors}, setError, reset, rules} = useForm();
     const {required, validateTrim} = formValidate();
-    const { addProject, loading, error } = useFirestore();
+    const { addProject, loading, error, dataEdit } = useContext(firestoreContext);
 
     const onSubmit = async({project, selectColor, selectIcon, selectWorkArea}) => {
         const {color} = selectColor;
         const {value: icon} = selectIcon;
         const {value: area} = selectWorkArea;
-        console.log(project, color, icon, area);
         try {
             await addProject(project, color, icon, area);  
         } catch (error) {
-            console.log(error)
             setError(error.message);
         }finally {
             reset()
         }
     } 
+
+    console.log(dataEdit);
 
   return (
     <>

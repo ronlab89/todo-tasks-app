@@ -104,3 +104,13 @@ a:hover {
 .toolProject {
     cursor: pointer;
 }
+
+.tool-update:hover {
+    color: #0A58CA;
+}
+.tool-eraser:hover {
+    color: var(--red);
+}
+.tool-star:hover {
+    border-color: var(--lightYellow);
+}
