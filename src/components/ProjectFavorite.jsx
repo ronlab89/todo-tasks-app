@@ -1,9 +1,13 @@
 import React from 'react'
+import Title from './Title'
 
 const ProjectFavorite = () => {
   return (
     <section className='card card-fav-project'>
-        Favoritos aqui
+        <Title text='Proyectos favoritos' className='new-project' />
+        <article>
+          
+        </article>
     </section>
   )
 }

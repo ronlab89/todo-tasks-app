@@ -30,9 +30,9 @@ const ProjectForm = () => {
         }finally {
             reset({
                 project: '',
-                selectColor: {},
-                selectIcon: {},
-                selectWorkArea: {}
+                selectColor: {value: ''},
+                selectIcon: {value: ''},
+                selectWorkArea: {value: ''}
             })
         }
     } 
