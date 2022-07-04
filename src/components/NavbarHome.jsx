@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import '../css/navbarHome.css'
 import darkLogo from '/assets/images/logo_dark_nb.png'
-import { Link } from 'react-router-dom'
 import {FaHome, FaSignOutAlt, FaPlus, FaEdit, FaEraser, FaStar, FaProjectDiagram, FaCheck} from 'react-icons/fa'
 import { navIconContext } from '../context/NavIconProvider'
 import { firestoreContext } from '../context/FirestoreProvider'
+import { favoriteContext } from '../context/FavoriteProvider'
 
 import NavIcon from '../components/NavIcon'
 import Loading from './Loading'
@@ -12,10 +13,13 @@ import { useState } from 'react'
 
 const NavbarHome = ({handleLogOut}) => {
     const {toggleMenu} = useContext(navIconContext);
-
     const {dataProjects, error, loading, getProjects, deleteProject, updateProject} = useContext(firestoreContext);
+    const {favorites, setFavorites, isFavorite, setIsFavorite} = useContext(favoriteContext);
 
     const [edit, setEdit] = useState({state: false, id: ''});
+
+    const lightYellow = '#ffe66d';
+    const lightGray = '#f5f5f5';
      
     useEffect(() => {
         console.log('getProjects');
@@ -43,6 +47,11 @@ const NavbarHome = ({handleLogOut}) => {
     const editNameProject = (idpro, name) => {
         updateProject(idpro, name);
         setEdit({state: false, id: ''});
+    }
+
+    const handleFavorite = (pro) => {
+        setIsFavorite(!isFavorite);
+        setFavorites([...favorites, pro]);
     }
 
 
@@ -106,7 +115,12 @@ const NavbarHome = ({handleLogOut}) => {
                                     :
                                     <span className='ms-2 toolProject tool-eraser' onClick={() => handleDeleteProject(pro.idpro)}><FaEraser /></span>
                                 }
-                                <span className='ms-2 toolProject tool-star'><FaStar /></span>
+                                <span
+                                  className='ms-2 toolProject tool-star'
+                                  onClick={() => handleFavorite(pro)}
+                                >
+                                    <FaStar color={isFavorite === true && favorites.idpro === pro.idpro ? lightYellow : lightGray}/>
+                                </span>
                             </div>
                         </div>
                     ))

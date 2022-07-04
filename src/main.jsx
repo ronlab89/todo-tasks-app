@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {UserProvider} from './context/UserProvider'
 import { NavIconProvider } from './context/NavIconProvider'
 import { FirestoreProvider } from './context/FirestoreProvider'
+import { FavoriteProvider } from './context/FavoriteProvider'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
@@ -14,9 +15,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
     <UserProvider>
       <FirestoreProvider>
+      <FavoriteProvider>
       <NavIconProvider>
           <App />
       </NavIconProvider>
+      </FavoriteProvider>
       </FirestoreProvider>
     </UserProvider>
     </BrowserRouter>

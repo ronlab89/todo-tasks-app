@@ -97,6 +97,10 @@ a {
   padding: 8rem 0rem 0rem 0rem;
 }
 
+.icon-fav {
+  font-size: 2rem;
+}
+
 /* Responsive Design */
 
 @media (max-width: 768px) {
