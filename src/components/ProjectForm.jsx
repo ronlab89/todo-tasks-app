@@ -17,7 +17,7 @@ const ProjectForm = () => {
 
     const {register, control, handleSubmit, formState: {errors}, setError, reset, rules} = useForm();
     const {required, validateTrim} = formValidate();
-    const { addProject, loading, error, dataEdit } = useContext(firestoreContext);
+    const { addProject, loading, error } = useContext(firestoreContext);
 
     const onSubmit = async({project, selectColor, selectIcon, selectWorkArea}) => {
         const {color} = selectColor;
@@ -28,11 +28,14 @@ const ProjectForm = () => {
         } catch (error) {
             setError(error.message);
         }finally {
-            reset()
+            reset({
+                project: '',
+                selectColor: {},
+                selectIcon: {},
+                selectWorkArea: {}
+            })
         }
     } 
-
-    console.log(dataEdit);
 
   return (
     <>

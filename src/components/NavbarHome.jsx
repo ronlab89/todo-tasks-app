@@ -4,18 +4,18 @@ import darkLogo from '/assets/images/logo_dark_nb.png'
 import { Link } from 'react-router-dom'
 import {FaHome, FaSignOutAlt, FaPlus, FaEdit, FaEraser, FaStar, FaProjectDiagram, FaCheck} from 'react-icons/fa'
 import { navIconContext } from '../context/NavIconProvider'
-import { userContext } from '../context/UserProvider'
 import { firestoreContext } from '../context/FirestoreProvider'
 
 import NavIcon from '../components/NavIcon'
 import Loading from './Loading'
+import { useState } from 'react'
 
 const NavbarHome = ({handleLogOut}) => {
     const {toggleMenu} = useContext(navIconContext);
-    const {user} = useContext(userContext);
 
-    const {dataProjects, error, loading, getProjects, deleteProject, setDataEdit} = useContext(firestoreContext);
+    const {dataProjects, error, loading, getProjects, deleteProject, updateProject} = useContext(firestoreContext);
 
+    const [edit, setEdit] = useState({state: false, id: ''});
      
     useEffect(() => {
         console.log('getProjects');
@@ -29,8 +29,20 @@ const NavbarHome = ({handleLogOut}) => {
     }
 
     const handleEditProject = async(pro) => {
-        console.log('Click Edit');
-        setDataEdit(pro);
+        setEdit({state: true, id: pro.idpro});
+    }
+
+    const handleKeySubmit = (e, idpro) => {
+        if(e.key === 'Enter') {
+            e.preventDefault();
+            const name = e.target.value;
+            editNameProject(idpro, name);
+        }
+    }
+
+    const editNameProject = (idpro, name) => {
+        updateProject(idpro, name);
+        setEdit({state: false, id: ''});
     }
 
 
@@ -71,13 +83,25 @@ const NavbarHome = ({handleLogOut}) => {
                         <div className='d-flex justify-content-between align-items-center mb-2' key={pro.idpro}>
                             <div className='d-flex justify-content-start align-items-center'>
                                 <div className='color-project' style={{backgroundColor: pro.color}}></div>
-                                <p className='mb-0 ms-2'>{pro.project}</p>
+                                {
+                                    edit.state === true && edit.id === pro.idpro ?  
+                                    <form>
+                                        <input className='form-control-sm' onKeyDown={(e) => handleKeySubmit(e, pro.idpro)} type='text'  />
+                                    </form>
+                                    :
+                                    <p className='mb-0 ms-2'>{pro.project}</p>
+                                }
                                 <span className='d-none'>{pro.uid}</span>
                             </div>
                             <div className=''>
-                                <span className='ms-2 toolProject tool-update' onClick={() => handleEditProject(pro)}><FaEdit /></span>
                                 {
-                                    loading[pro.idpro] ?
+                                    loading[pro.idpro] && loading.type === 'update' ?
+                                    <span className='ms-2 spinner-grow spinner-grow-sm text-primary' role='status'></span>
+                                    :
+                                    <span className='ms-2 toolProject tool-update' onClick={() => handleEditProject(pro)}><FaEdit /></span>
+                                }
+                                {
+                                    loading[pro.idpro] && loading.type === 'delete' ?
                                     <span className='ms-2 spinner-grow spinner-grow-sm text-danger' role='status'></span>
                                     :
                                     <span className='ms-2 toolProject tool-eraser' onClick={() => handleDeleteProject(pro.idpro)}><FaEraser /></span>

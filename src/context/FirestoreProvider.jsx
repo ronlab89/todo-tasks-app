@@ -10,7 +10,6 @@ const FirestoreProvider = ({children}) => {
     const [dataProjects, setDataProjects] = useState([]);
     const [error, setError] = useState();
     const [loading, setLoading] = useState({});
-    const [dataEdit, setDataEdit] = useState(null);
     
     const getProjects = async() => {
         try {
@@ -52,7 +51,7 @@ const FirestoreProvider = ({children}) => {
 
     const deleteProject = async(idpro) => {
         try {
-            setLoading(prev => ({...prev, [idpro]: true}));
+            setLoading(prev => ({...prev, [idpro]: true, type: 'delete'}));
             const projectRef = doc(db, 'Projects', idpro);
             await deleteDoc(projectRef);
             setDataProjects(dataProjects.filter(item => item.idpro !== idpro));
@@ -60,25 +59,26 @@ const FirestoreProvider = ({children}) => {
             console.log(error);
             setError(error.message);
         } finally {
-            setLoading(prev => ({...prev, [idpro]: false}));
+            setLoading(prev => ({...prev, [idpro]: false, type: 'delete'}));
         }
     }
 
     const updateProject = async(idpro, projectUpd) => {
         try {
-            setLoading(prev => ({...prev, up: true}));
+            setLoading(prev => ({...prev, [idpro]: true, type: 'update'}));
             const projectRef = doc(db, 'Projects', idpro);
             await updateDoc(projectRef, {project: projectUpd});
+            setDataProjects(dataProjects.map(item => item.idpro === idpro ? ({...item, project: projectUpd}) : item))
         } catch (error) {
             console.log(error);
             setError(error.message);
         } finally {
-            setLoading(prev => ({...prev, up: false}));
+            setLoading(prev => ({...prev, [idpro]: false, type: 'update'}));
         }
     }
 
     return (
-        <firestoreContext.Provider value={{dataProjects, setDataProjects, error, loading, dataEdit, setDataEdit, getProjects, addProject, deleteProject, updateProject}}>
+        <firestoreContext.Provider value={{dataProjects, setDataProjects, error, loading, getProjects, addProject, deleteProject, updateProject}}>
             {children}
         </firestoreContext.Provider>
     )
