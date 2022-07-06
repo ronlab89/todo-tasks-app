@@ -11,21 +11,21 @@ const ProjectFavorite = () => {
   return (
     <section className='card card-fav-project'>
         <Title text='Proyectos favoritos' className='new-project' />
-        <section className="row mt-3">
+        <section className="row mt-3 mx-auto">
           {
             favorites.map(pro => (
+            <div className="col-5 border rounded mb-2 me-3">
               <div className='row justify-content-start align-items-center mb-2' key={pro.idpro}>
-                <div className='col-1 p-0'>
-                  <span className='icon-fav'>{pro.icon}</span>
-                </div>
-                <div className='col-10'>
-                <div className='d-flex justify-content-start align-items-center'>
-                  <div className='color-project me-2' style={{backgroundColor: pro.color}}></div>
+                <div className='col-12 d-flex align-items-center'>
+                  <div className='color-project-favorite ms-1 me-2' style={{backgroundColor: pro.color}}></div>
                   <div>{pro.project}</div>
                 </div>
-                  <div className='ms-3 fw-bold'>{pro.area}</div>
+                <div className='col-12 d-flex align-items-center'>
+                  <span className='icon-fav'>{pro.icon}</span>
+                  <div className='ms-1'>{pro.area}</div>
                 </div>
               </div>
+            </div>
           ))
           
 
