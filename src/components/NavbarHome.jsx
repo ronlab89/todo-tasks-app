@@ -14,12 +14,16 @@ import { useState } from 'react'
 const NavbarHome = ({handleLogOut}) => {
     const {toggleMenu} = useContext(navIconContext);
     const {dataProjects, error, loading, getProjects, deleteProject, updateProject} = useContext(firestoreContext);
-    const {favorites, setFavorites, isFavorite, setIsFavorite} = useContext(favoriteContext);
+    const {favorites, isFavorite, updateFavorite, updateFavoriteProject} = useContext(favoriteContext);
 
     const [edit, setEdit] = useState({state: false, id: ''});
 
+    const {idpro} = favorites;
+
     const lightYellow = '#ffe66d';
     const lightGray = '#f5f5f5';
+
+    const projectFavorite = isFavorite.includes(idpro) ? lightYellow : lightGray;
      
     useEffect(() => {
         console.log('getProjects');
@@ -50,8 +54,15 @@ const NavbarHome = ({handleLogOut}) => {
     }
 
     const handleFavorite = (pro) => {
-        setIsFavorite(!isFavorite);
-        setFavorites([...favorites, pro]);
+        updateFavorite(pro.idpro);
+        const projectFav = {
+            id: pro.idpro,
+            project: pro.project,
+            color: pro.color,
+            icon: pro.icon,
+            area: pro.area 
+        };
+        updateFavoriteProject(projectFav);
     }
 
 
@@ -118,8 +129,9 @@ const NavbarHome = ({handleLogOut}) => {
                                 <span
                                   className='ms-2 toolProject tool-star'
                                   onClick={() => handleFavorite(pro)}
+                                  id={pro.idpro}
                                 >
-                                    <FaStar color={isFavorite === true && favorites.idpro === pro.idpro ? lightYellow : lightGray}/>
+                                    <FaStar color={projectFavorite}/>
                                 </span>
                             </div>
                         </div>
