@@ -14,7 +14,7 @@ const ProjectFavorite = () => {
         <section className="row mt-3 mx-auto">
           {
             favorites.map(pro => (
-            <div className="col-5 border rounded mb-2 me-3"  key={pro.idpro}>
+            <div className="col-5 border rounded mb-2 me-3"  key={pro.id}>
               <div className='row justify-content-start align-items-center mb-2'>
                 <div className='col-12 d-flex align-items-center'>
                   <div className='color-project-favorite ms-1 me-2' style={{backgroundColor: pro.color}}></div>

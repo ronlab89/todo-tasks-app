@@ -4,8 +4,20 @@ const favoriteContext = createContext();
 
 const FavoriteProvider = ({children}) => {
 
-    const [isFavorite, setIsFavorite] = useState([]);
-    const [favorites, setFavorites] = useState([]);
+    let favoriteSet;
+    const localFavorite = JSON.parse(localStorage.getItem('favorites')) || [];
+    if(localFavorite) {
+        favoriteSet = localFavorite;
+    }
+
+    let favoriteSetProject;
+    const localFavoriteProject = JSON.parse(localStorage.getItem('projectFavorites')) || [];
+    if(localFavoriteProject) {
+        favoriteSetProject = localFavoriteProject;
+    }
+
+    const [isFavorite, setIsFavorite] = useState(favoriteSet);
+    const [favorites, setFavorites] = useState(favoriteSetProject);
 
     const updateFavorite = (id) => {
         const update = [...isFavorite];
@@ -16,6 +28,7 @@ const FavoriteProvider = ({children}) => {
             update.push(id);
         }
         setIsFavorite(update);
+        localStorage.setItem('favorites', JSON.stringify(update));
     }
 
     const updateFavoriteProject = (projectFav) => {
@@ -27,6 +40,7 @@ const FavoriteProvider = ({children}) => {
             update.push(projectFav)
         }
         setFavorites(update);
+        localStorage.setItem('projectFavorites', JSON.stringify(update));
     }
 
     return (
