@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../css/navbarHome.css'
 import darkLogo from '/assets/images/logo_dark_nb.png'
-import {FaHome, FaSignOutAlt, FaPlus, FaEdit, FaEraser, FaStar, FaProjectDiagram, FaCheck} from 'react-icons/fa'
+import {FaHome, FaSignOutAlt, FaPlus, FaEdit, FaEraser, FaRegStar, FaStar, FaProjectDiagram, FaCheck} from 'react-icons/fa'
 import { navIconContext } from '../context/NavIconProvider'
 import { firestoreContext } from '../context/FirestoreProvider'
 import { favoriteContext } from '../context/FavoriteProvider'
@@ -17,13 +17,8 @@ const NavbarHome = ({handleLogOut}) => {
     const {favorites, isFavorite, updateFavorite, updateFavoriteProject} = useContext(favoriteContext);
 
     const [edit, setEdit] = useState({state: false, id: ''});
-
-    const {idpro} = favorites;
-
-    const lightYellow = '#ffe66d';
-    const lightGray = '#f5f5f5';
-
-    const projectFavorite = isFavorite.includes(idpro) ? lightYellow : lightGray;
+    
+    console.log(favorites.id);
      
     useEffect(() => {
         console.log('getProjects');
@@ -129,9 +124,12 @@ const NavbarHome = ({handleLogOut}) => {
                                 <span
                                   className='ms-2 toolProject tool-star'
                                   onClick={() => handleFavorite(pro)}
-                                  id={pro.idpro}
                                 >
-                                    <FaStar color={projectFavorite}/>
+                                    {
+                                        isFavorite.includes(pro.idpro) ?
+                                        <FaStar style={{color: '#ffe66d', borderColor: '#ffe66d'}}/> :
+                                        <FaRegStar />
+                                    }
                                 </span>
                             </div>
                         </div>
